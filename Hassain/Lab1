@@ -307,3 +307,39 @@ localhost | CHANGED => {
 [root@d04tapmana001xx ~]# ls
 hassain  index.html  second.html
 
+-----------------------------------------------------
+
+[root@d04tapmana001xx opt]# ansible localhost -m file -a"name=/opt/devopsschool.txt state=absent"
+localhost | CHANGED => {
+    "changed": true,
+    "path": "/opt/devopsschool.txt",
+    "state": "absent"
+}
+[root@d04tapmana001xx opt]# ls -ltr
+total 0
+drwxr-xr-x. 2 root   root     6 Sep  3  2018 CA
+drwxr-x---. 8 splunk splunk 287 Sep  3  2018 splunkforwarder
+drwxr-xr-x. 7 root   root    76 Sep  3  2018 nsr
+
+[root@d04tapmana001xx opt]# ansible localhost -m file -a"name=/opt/devopsschool.txt state=touch"
+localhost | CHANGED => {
+    "changed": true,
+    "dest": "/opt/devopsschool.txt",
+    "gid": 0,
+    "group": "root",
+    "mode": "0640",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+[root@d04tapmana001xx opt]# ls
+CA  devopsschool.txt  nsr  splunkforwarder
+[root@d04tapmana001xx opt]# pwd
+/opt
+[root@d04tapmana001xx opt]# ls -ltrh
+total 0
+drwxr-xr-x. 2 root   root     6 Sep  3  2018 CA
+drwxr-x---. 8 splunk splunk 287 Sep  3  2018 splunkforwarder
+drwxr-xr-x. 7 root   root    76 Sep  3  2018 nsr
+-rw-r-----  1 root   root     0 Nov 26 11:09 devopsschool.txt
