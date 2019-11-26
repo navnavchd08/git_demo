@@ -8,7 +8,7 @@
 
 5. ansible localhost -m file -a"name=index.html state=touch path=/var/www/html"
  
-6. 
+6. ansible local host -m copy -a"src=second.html dest=/var/www/html/"
 
 
 7. 
