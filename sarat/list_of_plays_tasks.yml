@@ -1,0 +1,30 @@
+- hosts: all
+  tasks:
+    - debug:
+        msg: task1
+    - name: Include task list in play
+      include: stuff.yaml
+
+------stuff.yaml------------
+---
+- name: create a user group
+    group:
+      name: deploy
+      state: present
+- name: create a user group
+    user:
+      name: deploy-user
+      group: deploy
+      shell: /bin/bash
+- name: install package named “httpd” in RHEL/centos
+    yum:
+      name: httpd
+      state: present
+- name: start and enable the service named “httpd”
+    service:
+      name: httpd
+      state: started
+- name: to create a file called “index.html” in /var/www/html
+    file:
+      name: index.html
+      state: touch
