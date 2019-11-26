@@ -1,0 +1,7 @@
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  tasks:
+   - name: start the httpd service
+    service: name=httpd state=started
+...
