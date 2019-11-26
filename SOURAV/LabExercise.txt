@@ -9,5 +9,6 @@ ansible localhost -m copy -a"src=second.html dest=/var/www/html/"
 ansible localhost -m yum -a"name=git state=present"
 ansible localhost -m yum -a"name=wget state=present"
 ansible localhost -m git -a "clone=yes repo=https://github.com/scmgalaxy/ansible-role-template dest=/var/wwww"
+ansible locahost -m reboot
 
 
