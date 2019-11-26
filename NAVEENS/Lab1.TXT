@@ -21,3 +21,8 @@ ansible dvdipapp00001uk -m copy -a"src=index.html dest=/var/www/html/second.html
 7.
 ansible dvdipapp00001uk -m yum -a"name=git state=present"
 ansible dvdipapp00001uk -m yum -a"name=wget state=present"
+
+8.
+ansible dvdipapp00001uk -m git -a"repo='https://github.com/scmgalaxy/ansible-role-template' dest=/home/nav/myrepo clone=yes"
+
+9. 
