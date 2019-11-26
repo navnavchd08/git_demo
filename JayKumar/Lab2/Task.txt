@@ -1,0 +1,4 @@
+ansible all -i 192.168.56.101, -m yum -a"name=httpd state=present" -u common -b
+ansible all -i 192.168.56.101, -m service -a"name=httpd state=started" -u common  -b
+ansible all -i 192.168.56.101, -m file -a"name=index.html state=touch" -u common   -b
+ansible all -i 192.168.56.101, -m copy -a"src=index.html dest=/var/www/html/" -u common   -b
