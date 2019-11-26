@@ -428,3 +428,128 @@ What to do when you have
         ---- Separate TASK YAML
         ----- Seprate PLAY YAML
         https://www.devopsschool.com/blog/ansible-include-scnario-with-list-of-plays-or-tasks/
+================================================================================================
+13.232.163.155
+15.206.165.15
+
+
+Variables
+templates
+Condiontiong
+Looping
+Handlers
+==================================
+What is Variables?
+      String
+      boolean
+      number
+      list
+      dict
+
+How many places you can declare a variables?
+-----------------------------------------
+      28+
+
+      PLAYBOOK
+            Directly
+            Through External file
+            Prompt
+            Register
+              OUTPUT of TASK is set to variables using REGister
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  vars:
+    myname: "Rajeshkumar"
+    package: "httpd"
+  vars_files:
+    - ext.yaml
+  vars_prompt:
+    - name: "mycompname"
+      prompt: "Which company you work for - Enter it here:-"
+  tasks:
+  - name: Ansible register variable basic example
+    shell: "find *.txt >> var.yaml"
+    args:
+      chdir: "/home/ec2-user"
+    register: find_output
+  - name: Install the httpd apps
+    yum: name={{ package }}
+  - name: start the httpd service
+    service: name={{package}} state=started
+  - name: create a empty fle
+    file: dest=/opt/test.txt state=touch
+  - name: copy a file
+    copy: dest=/var/www/html/ src="/home/ec2-user/index.html"
+  - debug:
+      msg: Myname is {{ myname }}
+  - debug:
+      msg: My filename is {{ find_output }}
+...
+
+
+      INVENTORY
+          Behavioial parameters
+  ===========================================
+
+[web]
+13.232.163.155 ansible_user=ec2-user ansible_ssh_private_key_file=remote.pem ansible_become=true
+15.206.165.15 ansible_user=ec2-user ansible_ssh_private_key_file=remote.pem ansible_become=true
+
+[db]
+13.232.163.155 
+15.206.165.15
+web1
+
+[db:vars]
+ansible_user=ec2-user 
+ansible_ssh_private_key_file=remote.pem 
+ansible_become=true
+
+ansible-playbook -i inventory web5.yaml
+
+ =============inventory file==============================
+[web]
+13.232.163.155 ansible_user=ec2-user ansible_ssh_private_key_file=remote.pem ansible_become=true 
+15.206.165.15 ansible_user=ec2-user ansible_ssh_private_key_file=remote.pem ansible_become=true
+
+[db]
+13.232.163.155 myname=rajeshininvent
+15.206.165.15
+
+[db:vars]
+ansible_user=ec2-user 
+ansible_ssh_private_key_file=remote.pem 
+ansible_become=true
+
+[web:vars]
+myname=rajeshininvent
+
+ansible-playbook -i inventory web5.yaml
+
+ =============group_vars & host_vars==============================
+group_vars - vars for GROUP
+host_vars - Vars for host
+                
+Reference
+https://www.devopsschool.com/tutorial/ansible/variables/
+
+
+Command Line
+
+FACT Variable &&& Condiontiong
+https://www.devopsschool.com/tutorial/ansible/ansible-conditional-programming-playbooks.html
+
+
+Lab 4 --
+======================================
+https://www.devopsschool.com/blog/ansible-variable-lab-excercise-part-1/
+
+
+
+myname: "Rajeshkumar"
+package: "httpd"
+
+
+
