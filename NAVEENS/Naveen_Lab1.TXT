@@ -29,3 +29,4 @@ ansible dvdipapp00001uk -m git -a"repo='https://github.com/scmgalaxy/ansible-rol
 ansible dvdipapp00001uk -m reboot -a"force=yes"
 
 10. 
+ansible dvdipapp00001uk -m file -a"name=/opt/devopsschool.txt state=touch" | SUCCESS => {state=absent} 
