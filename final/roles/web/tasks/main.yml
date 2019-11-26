@@ -1,0 +1,29 @@
+---
+# tasks file for web
+  - name: Install the httpd apps
+    yum: name={{ mywebserver }}
+    when: ansible_distribution == 'CentOS'
+  - name: Template
+    template:
+      src: index.html.j2
+      dest: /var/www/html/index2.html
+    template:
+      src: httpd.j2
+      dest: /etc/httpd/conf/httpd.conf
+  - name: shell
+    shell: "find *.txt >> var.yaml"
+    args:
+      chdir: "/home/ec2-user"
+    register: myfiles
+  - debug:
+      msg: My filename is {{ myfiles }}
+  - name: Create group called Tesco
+    group: name=Tesco state=present
+  - name: Create user called deploy-user
+    user: name=deploy-user state=present
+  - name: Install Packages
+     yum: name={{ item }} update_cache=yes state=latest
+     with_items:
+       - git
+       - ntp
+       - vim
