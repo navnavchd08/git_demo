@@ -1,0 +1,16 @@
+[root@d04tapmana001xx ~]# ansible localhost -m user -a "name=deploy-user state=present group=deploy"
+localhost | CHANGED => {
+    "changed": true,
+    "comment": "",
+    "create_home": true,
+    "group": 1224,
+    "home": "/home/deploy-user",
+    "name": "deploy-user",
+    "shell": "/bin/bash",
+    "state": "present",
+    "system": false,
+    "uid": 10126
+}
+[root@d04tapmana001xx ~]# ansible localhost -m shell -a " more /etc/passwd | grep deploy-user"
+localhost | CHANGED | rc=0 >>
+deploy-user:x:10126:1224::/home/deploy-user:/bin/bash
