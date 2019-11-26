@@ -1,0 +1,6 @@
+- hosts: web
+  tasks:
+  - name: Write a Ansible commands to install a package called “git”, “wget”
+    package:
+      name: git,wget
+      state: present
