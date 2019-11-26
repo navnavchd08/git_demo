@@ -10,5 +10,7 @@
 ansible localhost -m yum -a"name=git state=present"
 ansible localhost -m yum -a"name=wget state=present"
 
-
+8. ansible localhost -m git -a"dest=/tmp/repo repo=https://github.com/scmgalaxy/ansible-role-template"
 9 : ansible localhist -m reboot 
+
+
