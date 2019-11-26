@@ -1,0 +1,6 @@
+- hosts: web
+  tasks:
+  - name: install package named “httpd” in RHEL/centos
+    yum:
+      name: httpd
+      state: present
