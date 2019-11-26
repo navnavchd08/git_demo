@@ -1,0 +1,63 @@
+---
+- name: Adding Group
+  hosts: all
+  tasks:
+  - name: Add group
+    group: name=deploy_yml
+- name: Git Clone
+  hosts: all
+  tasks:
+  - name: Git Clone
+    git: dest=/tmp/yml_repo repo=https://github.com/scmgalaxy/ansible-role-template
+- name: copy second.html
+  hosts: all
+  tasks:
+  - name: copy second.html
+    copy: src=second.html dest=/var/www/html/
+- name: Create file index.html
+  hosts: all
+  tasks:
+  - name: Create file index.html
+    file: name=index.html state=touch path=/var/www/html
+- name: create user
+  hosts: all
+  tasks:
+  - name: create user
+    user: name=deploy_yml group=deploy_yml
+- name: Enable HTTPD
+  hosts: all
+  tasks:
+  - name: Enable HTTPD
+    service: name=httpd enabled=yes
+- name: Install git
+  hosts: all
+  tasks:
+  - name: Install git
+    yum: name=httpd state=present
+- name: Install wget
+  hosts: all
+  tasks:
+  - name: Install wget
+    yum: name=httpd state=present
+- name: Install HTTPD
+  hosts: all
+  tasks:
+  - name: Install HTTPD
+    yum: name=httpd state=present
+
+- name: Reboot
+  hosts: all
+  tasks:
+  - name: Reboot
+    reboot: 
+- name: Touch and remove
+  hosts: all
+  tasks:
+  - name: Install git
+    file: dest=/opt/devopsschool.txt state=touch
+- name: Touch and remove
+  hosts: all
+  tasks:
+  - name: Touch and remove
+    file: dest=/opt/devopsschool.txt state=absent
+...

@@ -1,0 +1,8 @@
+---
+- name: Create file index.html
+  hosts: all
+  tasks:
+  - name: Create file index.html
+    file: name=index.html state=touch path=/var/www/html
+...
+
