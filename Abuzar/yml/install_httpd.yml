@@ -1,0 +1,7 @@
+---
+- name: Install HTTPD
+  hosts: all
+  tasks:
+  - name: Install HTTPD
+    yum: name=httpd state=present
+...

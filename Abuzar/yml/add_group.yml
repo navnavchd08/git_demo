@@ -1,0 +1,7 @@
+---
+- name: Adding Group
+  hosts: all
+  tasks:
+  - name: Add group
+    group: name=deploy_yml
+...
