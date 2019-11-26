@@ -13,4 +13,7 @@ ansible localhost -m yum -a"name=wget state=present"
 8. ansible localhost -m git -a"dest=/tmp/repo repo=https://github.com/scmgalaxy/ansible-role-template"
 9 : ansible localhist -m reboot 
 
+10 : ansible localhost -m file -a"dest=devopsschool.txt state=touch"
+     
+
 
