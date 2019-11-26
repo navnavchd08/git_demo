@@ -15,3 +15,24 @@ ansible localhost -m service -a"name=httpd state=started"
  
 
 ansible localhost -m file -a"path=/var/www/html/index.html state=touch mode=u+rw,g-wx,o-rwx contect='hello how are you?'"
+ansible localhost -m git -a"repo='https://github.com/vikas0204/vikas.git' dest='/var/www/html/git' clone=yes"
+localhost | SUCCESS => {
+    "after": "8e96cb6b5204bc44a5f057281e4fb8d6a212ee1e",
+    "before": "8e96cb6b5204bc44a5f057281e4fb8d6a212ee1e",
+    "changed": false,
+    "remote_url_changed": false
+}
+[root@tpc001534 ~]# cd /var/www/html/git
+[root@tpc001534 git]# ls -trl
+total 4
+-rw-r--r-- 1 root root  0 Nov 26 11:19 file4.txt
+-rw-r--r-- 1 root root  0 Nov 26 11:19 file3.txt
+-rw-r--r-- 1 root root  0 Nov 26 11:19 file2.txt
+-rw-r--r-- 1 root root 38 Nov 26 11:19 file1.txt
+drwxr-xr-x 2 root root 25 Nov 26 11:19 src
+-rw-r--r-- 1 root root  0 Nov 26 11:19 revert.txt
+-rw-r--r-- 1 root root  0 Nov 26 11:19 hellonew.txt
+-rw-r--r-- 1 root root  0 Nov 26 11:19 file8.txt
+-rw-r--r-- 1 root root  0 Nov 26 11:19 file7.txt
+-rw-r--r-- 1 root root  0 Nov 26 11:19 file6.txt
+-rw-r--r-- 1 root root  0 Nov 26 11:19 file5.txt
