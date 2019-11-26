@@ -1,0 +1,7 @@
+---
+- name: Create File
+  hosts: list1
+  tasks:
+  - name: Create File for list1
+    file: name=index.html state=touch
+...	
