@@ -1,0 +1,8 @@
+---
+ - name: create a group
+   hosts: test
+   tasks:
+     - name: Creating a real group
+       group:
+         name: deploy
+         state: present
