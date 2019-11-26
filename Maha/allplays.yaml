@@ -1,0 +1,67 @@
+---
+ - name: create a group
+   hosts: test
+   tasks:
+     - name: Creating a real group
+       group:
+         name: deploy
+         state: present
+ - name: Create a user and add it
+   hosts: test
+   tasks:
+     - name: create a new user deploy-user
+       user:
+         name: deploy-user
+         group: deploy
+ - name: Install based on the YUM
+   hosts: test
+   tasks:
+     - name: Installing the package YUM
+       yum:
+         name: httpd
+         state: present
+
+ - name: Creating the file
+   hosts: test
+   tasks:
+     - name: Creating a new file
+       file:
+         path: /var/www/html/index.html
+         state: touch
+ - name: Copy a file
+   hosts: test
+   tasks:
+     - name: copying a file now
+       copy:
+         src: firstplay.yml
+         dest: /var/www/html/
+ - name: Install multiple packages
+   hosts: test
+   tasks:
+     - name: Installing git & wget packages
+       yum:
+         name: git,wget
+         state: present
+ - name: Touch a new file
+   hosts: test
+   tasks:
+     - name: creating a new file now
+       file:
+         name: /opt/devtools.txt
+         state: touch
+ - name: start and enable services
+   hosts: test
+   tasks:
+     - name: starting & enabling the services
+       service:
+         name: httpd
+         state: started
+         enabled: yes
+ - name: clone a git module
+   hosts: test
+   tasks:
+     - name: cloning a specific git module
+       git:
+         repo: https://github.com/scmgalaxy/ansible-role-template
+         clone: yes
+         dest: ./excercise

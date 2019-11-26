@@ -1,0 +1,9 @@
+---
+  - name: Creating the file
+    hosts: test
+    tasks:
+      - name: Creating a new file
+        file:
+          path: /var/www/html/index.html
+          state: touch
+          

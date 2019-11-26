@@ -1,0 +1,8 @@
+---
+  - name: Install based on the YUM
+    hosts: test
+    tasks:
+      - name: Installing the package YUM
+        yum:
+          name: httpd
+          state: present

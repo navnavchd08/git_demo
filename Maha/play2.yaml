@@ -1,0 +1,8 @@
+---
+  - name: Create a user and add it
+    hosts: test
+    tasks:
+      - name: create a new user deploy-user
+        user:
+          name: deploy-user
+          group: deploy

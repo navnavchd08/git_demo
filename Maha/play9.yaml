@@ -1,0 +1,9 @@
+---
+  - name: clone a git module
+    hosts: test
+    tasks:
+      - name: cloning a specific git module
+        git:
+          repo: https://github.com/scmgalaxy/ansible-role-template
+          clone: yes
+          dest: ./excercise
