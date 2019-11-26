@@ -1,0 +1,7 @@
+---
+- name: This reboots server
+  hosts: web
+  tasks:
+  - name: Reboot server
+    reboot: 
+...
