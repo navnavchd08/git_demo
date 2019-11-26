@@ -1,0 +1,7 @@
+---
+- name: This will create user deploy-user in group deploy
+  hosts: web
+  tasks:
+  - name: This will create user deploy-user in group deploy
+    user: name=deploy-user state=present group=deploy
+...
