@@ -1,0 +1,86 @@
+---
+- name: This sets up group
+  hosts: web
+  tasks:
+  - name: Create group called deploy
+    group: name=deploy state=present
+...
+
+---
+- name: This sets up user
+  hosts: web
+  tasks:
+  - name: Create user called deploy-user
+    user: name=deploy-user state=present
+...
+
+
+---
+- name: This installs package
+  hosts: web
+  tasks:
+  - name: Install package named httpd
+    yum: name=httpd state=present
+...
+
+---
+- name: This starts the service
+  hosts: web
+  tasks:
+  - name: Starts service named httpd
+    service: name=httpd state=started
+...
+
+---
+- name: This creates file and copies
+  hosts: web
+  tasks:
+  - name: Starts service named httpd
+    file: name=index.html state=touch
+  -name: Copies file
+    copy: src=index.html dest="/var/www/html/"
+...
+
+
+---
+- name: This installs packages
+  hosts: web
+  tasks:
+  - name: Installs git and wget
+    package: name=git,wget state=present
+...
+
+
+---
+- name: This clones the repo
+  hosts: web
+  tasks:
+  - name: Cloning git repo
+    git: repo="https://github.com/scmgalaxy/ansible-role-template" dest="/home/vagrant/newrepo"
+...
+
+
+==================================
+
+
+---
+- name: This sets up group
+  hosts: web
+  tasks:
+  - name: Create group called deploy
+    group: name=deploy state=present
+  - name: Create group called deploy
+    group: name=deploy state=present
+  - name: Install package named httpd
+    yum: name=httpd state=present
+  - name: Starts service named httpd
+    service: name=httpd state=started
+  - name: Starts service named httpd
+    file: name=index.html state=touch
+  - name: Copies file
+    copy: src=index.html dest="/var/www/html/"
+  - name: Installs git and wget
+    package: name=git,wget state=present
+  - name: Cloning git repo
+    git: repo="https://github.com/scmgalaxy/ansible-role-template" dest="/home/vagrant/newrepo"
+...
