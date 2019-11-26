@@ -335,3 +335,89 @@ Connection Options:
                         connect as this user (default=None)
 
 Some modules do not make sense in Ad-Hoc (include, meta, etc)
+===========================================================================
+
+
+ansible all -i 13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98, -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+
+ansible all -i 13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98, -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+
+
+What is Inventory file?
+--- ITS INI
+--- It has list of IP address seprated by new line
+--- It has custom group.
+
+
+ansible all -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible all -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible all -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible all -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+
+ansible all -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b -vvvvvv
+
+---------inventory group-------------------------
+[web]
+13.233.74.211
+
+[db]
+13.233.18.98
+
+[common]
+5.6.7.7
+5.6.7.8
+7.4.3.2
+6.9.4.3
+
+ansible web -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible common -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+
+
+ansible web -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible common -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible common -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible common -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible common -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible common -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+----------------------------- PLAYBOOK------------------------------------------
+~
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd
+  - name: start the httpd service
+    service: name=httpd state=started
+  - name: create a empty fle
+    file: dest=/opt/test.txt state=touch
+  - name: copy a file
+    copy: dest=/var/www/html/ src="/home/ec2-user/index.html"
+...
+
+ansible-playbook -i inventory web.yaml -u ec2-user --key-file=remote.pem -b
+
+Lab 3 - https://www.devopsschool.com/blog/ansible-playbook-lab-excercise-part-2/
