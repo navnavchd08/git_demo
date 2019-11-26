@@ -1,78 +1,53 @@
+---
+
 - hosts: web
   tasks:
   - name: create a user group
     group:
       name: deploy
       state: present
-
----
-
-- hosts: web
-  tasks:
+      
   - name: create a user group
     user:
       name: deploy-user
       group: deploy
       shell: /bin/bash
 
----
-
-- hosts: web
-  tasks:
   - name: install package named “httpd” in RHEL/centos
     yum:
       name: httpd
       state: present
 
----
-
-- hosts: web
-  tasks:
   - name: start and enable the service named “httpd”
     service:
       name: httpd
       state: started
 
----
-
-- hosts: web
-  tasks:
-  - name: to create a file called “index.html” in /var/www/html 
+  - name: to create a file called “index.html” in /var/www/html
     file:
       name: index.html
       state: touch
+
   - name: copy to /var/www/html
     copy:
-      src: index.html 
+      src: index.html
       dest: /var/www/html
 
----
-
-- hosts: web
-  tasks:
-  - name: to create a file called “index.html” in /var/www/html 
+  - name: to create a file called “index.html” in /var/www/html
     file:
       name: second.html
       state: touch
+
   - name: copy to /var/www/html
     copy:
-      src: second.html 
+      src: second.html
       dest: /var/www/html
 
----
-
-- hosts: web
-  tasks:
   - name: Write a Ansible commands to install a package called “git”, “wget”
     package:
       name: git,wget
       state: present
 
----
-
-  
-- hosts: web
-  tasks:
   - name: Download the repository
     git:
       repo: "https://github.com/scmgalaxy/ansible-role-template"
