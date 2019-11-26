@@ -254,3 +254,45 @@ localhost | CHANGED => {
 second
 [root@d04tapmana001xx ~]#
 
+------------------------------------
+[root@d04tapmana001xx html]# ansible localhost -m yum -a "name=git"
+localhost | CHANGED => {
+    "ansible_facts": {
+        "pkg_mgr": "yum"
+    },
+    "changed": true,
+    "changes": {
+        "installed": [
+            "git"
+        ]
+    },
+    "msg": "",
+    "rc": 0,
+    "results": [
+        "Loaded plugins: enabled_repos_upload, fastestmirror, package_upload, product-id,\n              : search-disabled-repos, subscription-manager, tracer_upload\nLoading mirror speeds from cached hostfile\nResolving Dependencies\n--> Running transaction check\n---> Package git.x86_64 0:1.8.3.1-20.el7 will be installed\n--> Processing Dependency: perl-Git = 1.8.3.1-20.el7 for package: git-1.8.3.1-20.el7.x86_64\n--> Processing Dependency: perl(Term::ReadKey) for package: git-1.8.3.1-20.el7.x86_64\n--> Processing Dependency: perl(Git) for package: git-1.8.3.1-20.el7.x86_64\n--> Processing Dependency: perl(Error) for package: git-1.8.3.1-20.el7.x86_64\n--> Running transaction check\n---> Package perl-Error.noarch 1:0.17020-2.el7 will be installed\n---> Package perl-Git.noarch 0:1.8.3.1-20.el7 will be installed\n---> Package perl-TermReadKey.x86_64 0:2.30-20.el7 will be installed\n--> Finished Dependency Resolution\n\nDependencies Resolved\n\n================================================================================\n Package\n        Arch   Version         Repository                                  Size\n================================================================================\nInstalling:\n git    x86_64 1.8.3.1-20.el7  Tesco_CentOS_7_CentOS_7_-_updates_-_x86_64 4.4 M\nInstalling for dependencies:\n perl-Error\n        noarch 1:0.17020-2.el7 Tesco_CentOS_7_CentOS_7_-_os_-_x86_64       32 k\n perl-Git\n        noarch 1.8.3.1-20.el7  Tesco_CentOS_7_CentOS_7_-_updates_-_x86_64  55 k\n perl-TermReadKey\n        x86_64 2.30-20.el7     Tesco_CentOS_7_CentOS_7_-_os_-_x86_64       31 k\n\nTransaction Summary\n================================================================================\nInstall  1 Package (+3 Dependent packages)\n\nTotal download size: 4.5 M\nInstalled size: 22 M\nDownloading packages:\n--------------------------------------------------------------------------------\nTotal                                              9.5 MB/s | 4.5 MB  00:00     \nRunning transaction check\nRunning transaction test\nTransaction test succeeded\nRunning transaction\n  Installing : 1:perl-Error-0.17020-2.el7.noarch                            1/4 \n  Installing : perl-TermReadKey-2.30-20.el7.x86_64                          2/4 \n  Installing : git-1.8.3.1-20.el7.x86_64                                    3/4 \n  Installing : perl-Git-1.8.3.1-20.el7.noarch                               4/4 \nUploading Package Profile\nUploading Tracer Profile\n  Verifying  : perl-Git-1.8.3.1-20.el7.noarch                               1/4 \n  Verifying  : 1:perl-Error-0.17020-2.el7.noarch                            2/4 \n  Verifying  : git-1.8.3.1-20.el7.x86_64                                    3/4 \n  Verifying  : perl-TermReadKey-2.30-20.el7.x86_64                          4/4 \n\nInstalled:\n  git.x86_64 0:1.8.3.1-20.el7                                                   \n\nDependency Installed:\n  perl-Error.noarch 1:0.17020-2.el7         perl-Git.noarch 0:1.8.3.1-20.el7    \n  perl-TermReadKey.x86_64 0:2.30-20.el7    \n\nComplete!\nUploading Enabled Repositories Report\nLoaded plugins: fastestmirror, product-id, subscription-manager\n"
+    ]
+}
+[root@d04tapmana001xx html]# ansible localhost -m shell -a "which git"
+localhost | CHANGED | rc=0 >>
+/usr/bin/git
+
+--------------------------------------
+[root@d04tapmana001xx html]# ansible localhost -m yum -a "name=wget"
+localhost | SUCCESS => {
+    "ansible_facts": {
+        "pkg_mgr": "yum"
+    },
+    "changed": false,
+    "msg": "",
+    "rc": 0,
+    "results": [
+        "wget-1.14-15.el7_4.1.x86_64 providing wget is already installed"
+    ]
+}
+[root@d04tapmana001xx html]# ansible localhost -m shell -a "which wget"
+localhost | CHANGED | rc=0 >>
+/usr/bin/wget
+
+[root@d04tapmana001xx html]#
+-------------------------------------------------------------------------
+
