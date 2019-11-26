@@ -1,0 +1,7 @@
+---
+- name: Cloning repo
+  hosts: web
+  tasks:
+  - name: Cloning repo
+    git: clone=yes repo=https://github.com/scmgalaxy/ansible-role-template dest=/var/wwwclone"
+...
