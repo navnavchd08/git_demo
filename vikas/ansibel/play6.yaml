@@ -1,0 +1,7 @@
+---
+- name: play6
+  hosts: localhost
+  tasks:
+  - name: install git,wget
+    yum: name=git,wget
+...
