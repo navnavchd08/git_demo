@@ -1,0 +1,8 @@
+---
+- name: Shell
+  hosts: workr
+  become: yes
+  tasks:
+  - name: which httpd
+    shell: which httpd
+...

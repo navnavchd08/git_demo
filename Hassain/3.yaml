@@ -1,0 +1,9 @@
+---
+- name: Touch a file
+  hosts: workr
+  become: yes
+  tasks:
+  - name: index file creation
+    file: name=index.html state=touch
+...
+
