@@ -1,0 +1,9 @@
+---
+  - name: Touch a new file
+    hosts: test
+    tasks:
+      - name: creating a new file now
+        file:
+          name: /opt/devtools.txt
+          state: touch
+...
