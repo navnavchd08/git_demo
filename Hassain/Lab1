@@ -295,4 +295,15 @@ localhost | CHANGED | rc=0 >>
 
 [root@d04tapmana001xx html]#
 -------------------------------------------------------------------------
+[root@d04tapmana001xx html]# ansible localhost -m git -a"clone=yes repo=https://github.com/scmgalaxy/ansible-role-template dest=/root/hassain"
+localhost | CHANGED => {
+    "after": "d3eefe03c1bb6c9b0e1574347523174a26d015ff",
+    "before": null,
+    "changed": true
+}
+[root@d04tapmana001xx html]# ls
+{  index.html  second.html
+[root@d04tapmana001xx html]# cd /root
+[root@d04tapmana001xx ~]# ls
+hassain  index.html  second.html
 
