@@ -1,0 +1,67 @@
+1.
+---
+- name: create a group called “deploy”
+  hosts: db
+  tasks:
+  - name: Create Group for db
+    group: name=deploy state=present
+...	
+
+2.
+---
+- name: create a user called “deploy-user”
+  hosts: db
+  tasks:
+  - name: Create User for db
+    user: name=deploy-user shell=/bin/bash groups=deploy state=present
+...	
+3.
+---
+- name: install package named “httpd”
+  hosts: db
+  tasks:
+  - name: Install httpd for db
+    yum: name=httpd state=present
+...	
+4.
+---
+- name: start and enable the service named “httpd”
+  hosts: db
+  tasks:
+  - name: Start httpd for db
+    service: name=httpd state=started
+...	
+5.
+  
+---
+- name: create a file called “index.html” 
+  hosts: db
+  tasks:
+  - name: Create File for db
+    file: name=index.html state=touch
+...	
+6.
+---
+- name: reboot a self machine
+  hosts: db
+  tasks:
+  - name: Reboot for db
+    reboot: force=yes
+...	
+	
+7.
+---
+- name: install a package called “git”, “wget”.
+  hosts: db
+  tasks:
+  - name: Install git , wget for db
+    yum: name=git,wget state=present
+...	
+8.
+---
+- name: Clone Repo
+  hosts: db
+  tasks:
+  - name: Clone Repo on db
+    git: repo='https://github.com/scmgalaxy/ansible-role-template' dest=/home/nav/myrepo clone=yes
+...	

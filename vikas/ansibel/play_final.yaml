@@ -1,0 +1,12 @@
+---
+- name: Final
+  hosts: localhost
+  tasks:
+- include: play1.yaml
+- include: play2.yaml
+- include: play3.yaml
+- include: play4.yaml
+- include: play5.yaml
+- include: play6.yaml
+- include: play7.yaml
+...

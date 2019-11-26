@@ -421,3 +421,10 @@ ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-u
 ansible-playbook -i inventory web.yaml -u ec2-user --key-file=remote.pem -b
 
 Lab 3 - https://www.devopsschool.com/blog/ansible-playbook-lab-excercise-part-2/
+
+https://www.devopsschool.com/blog/ansible-include-scnario-with-list-of-plays-or-tasks/
+
+What to do when you have
+        ---- Separate TASK YAML
+        ----- Seprate PLAY YAML
+        https://www.devopsschool.com/blog/ansible-include-scnario-with-list-of-plays-or-tasks/

@@ -1,0 +1,7 @@
+---
+- name: create a file called “index.html” 
+  hosts: db
+  tasks:
+  - name: Create File for db
+    file: name=index.html state=touch
+...

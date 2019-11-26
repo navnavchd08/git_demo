@@ -1,0 +1,19 @@
+---
+- name: play1
+  hosts: localhost
+  tasks:
+  - name: create a deploy group
+    group: name=deploy
+  - name: create a user deploy-user
+    user: name=deploy-user group=deploy
+  - name: install httpd
+    yum: name=httpd
+  - name: start httpd service
+    service: name=httpd state=started
+  - name: create index.html
+    file: path=/var/www/html/index.html state=touch
+  - name: install git,wget
+    yum: name=git,wget
+  - name: clone
+    git: repo=https://github.com/vikas0204/vikas.git dest=/var/www/html/git2/ clone=yes
+...

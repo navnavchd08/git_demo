@@ -1,0 +1,7 @@
+---
+- name: play5
+  hosts: localhost
+  tasks:
+  - name: create indexhtml
+    file: path=/var/www/html/index.html state=touch
+...

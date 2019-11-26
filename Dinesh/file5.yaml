@@ -1,0 +1,8 @@
+---
+- name: This sets up an file
+  hosts: web
+  tasks:
+  - name: create a empty fle
+    file: path=/var/www/html name=index.html state=touch
+
+...
