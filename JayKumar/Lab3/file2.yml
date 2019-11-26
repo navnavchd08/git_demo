@@ -1,0 +1,7 @@
+---
+- name: create a user called “deploy-user”
+  hosts: db
+  tasks:
+  - name: Create User for db
+    user: name=deploy-user shell=/bin/bash groups=deploy state=present
+...

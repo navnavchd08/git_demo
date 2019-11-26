@@ -1,0 +1,7 @@
+---
+- name: reboot a self machine
+  hosts: db
+  tasks:
+  - name: Reboot for db
+    reboot: force=yes
+...
