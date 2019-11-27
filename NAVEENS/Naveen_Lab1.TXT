@@ -1,0 +1,32 @@
+Lab1
+
+1. 
+ansible dvdipapp00001uk -m group -a"name=deploy state=present"
+
+2.
+ansible dvdipapp00001uk -m user -a"name=deploy-user shell=/bin/bash groups=deploy state=present"
+
+3.
+ansible dvdipapp00001uk -m yum -a"name=httpd state=present"
+
+4.
+ansible dvdipapp00001uk -m service -a"name=httpd state=started"
+
+5.
+ansible dvdipapp00001uk -m file -a"name=index.html state=touch"
+
+6.
+ansible dvdipapp00001uk -m copy -a"src=index.html dest=/var/www/html/second.html"
+
+7.
+ansible dvdipapp00001uk -m yum -a"name=git,wget state=present"
+
+
+8.
+ansible dvdipapp00001uk -m git -a"repo='https://github.com/scmgalaxy/ansible-role-template' dest=/home/nav/myrepo clone=yes"
+
+9. 
+ansible dvdipapp00001uk -m reboot -a"force=yes"
+
+10. 
+ansible dvdipapp00001uk -m file -a"name=/opt/devopsschool.txt state=touch" | SUCCESS => {state=absent} 

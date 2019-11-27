@@ -1,0 +1,10 @@
+- hosts: web
+  tasks:
+  - name: to create a file called “index.html” in /var/www/html 
+    file:
+      name: second.html
+      state: touch
+  - name: copy to /var/www/html
+    copy:
+      src: second.html 
+      dest: /var/www/html

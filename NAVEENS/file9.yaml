@@ -1,0 +1,7 @@
+---
+- name: Reboot
+  hosts: list1
+  tasks:
+  - name: Reboot for list1
+    reboot: force=yes
+...	

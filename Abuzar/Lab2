@@ -1,0 +1,9 @@
+Lab 2 
+
+Please note I have already made the password less by adding the ssh-keys into authorized_keys, therefore all the commands worked for me 
+
+ansible all -i 10.127.8.75, -m yum -a"name=httpd state=present" -u root 
+ansible all -i 10.127.8.75, -m service -a"name=httpd state=started" -u root
+ansible all -i 10.127.8.75, -m file -a"name=index.html state=touch" -u root
+ansible all -i 10.127.8.75, -m copy -a"src=index.html dest=/var/www/html/" -u root
+

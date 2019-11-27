@@ -1,0 +1,10 @@
+---
+- name: This sets up an git and wget 
+  hosts: web
+  tasks:
+  - name: Install the git apps
+    yum: name=git state=present
+  - name: Install the httpd apps
+    yum: name=wget state present
+
+...

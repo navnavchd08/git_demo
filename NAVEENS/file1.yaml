@@ -1,0 +1,7 @@
+---
+- name: Create Group
+  hosts: list1
+  tasks:
+  - name: Create Group for list1
+    group: name=deploy state=present
+...	

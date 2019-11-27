@@ -1,0 +1,7 @@
+---
+- name: play4
+  hosts: localhost
+  tasks:
+  - name: install httpd
+    service: name=httpd state=started
+...

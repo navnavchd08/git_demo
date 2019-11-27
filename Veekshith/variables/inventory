@@ -1,0 +1,7 @@
+
+  [web]
+	10.127.65.69
+	[web:vars]
+	package=httpd
+	[db]
+	10.127.64.179

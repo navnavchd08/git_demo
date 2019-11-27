@@ -1,0 +1,9 @@
+---
+- name: httpd webserver start
+  hosts: workr
+  become: yes
+  tasks:
+  - name: Install the httpd apps
+    service: name=httpd
+...
+

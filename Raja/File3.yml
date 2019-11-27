@@ -1,0 +1,7 @@
+---
+- name: install package named “httpd”
+  hosts: db
+  tasks:
+  - name: Install httpd for db
+    yum: name=httpd state=present
+...

@@ -1,0 +1,27 @@
+---
+- name: Merging All Codes
+  hosts: web
+  tasks:
+  - name: Create deploy group
+    group: name=deploy state=present
+  - name: Create user deploy-user in deploy group
+    user: name=deploy-user state=present password=Test123 group=deploy
+  - name: Install httpd
+    yum: name=httpd state=present
+  - name: Start httpd service
+    service: name=httpd state=started
+  - name: create empty file
+    file: path=/var/www/html/ name=index.html state=touch
+  - name: Install git
+    yum: name=git state=present
+  - name: Install wget
+    yum: name=wget state=present
+  - name: install git
+    git: clone=yes repo=https://github.com/scmgalaxy/ansible-role-template dest=/var/wwww
+  - name: Create file
+    file: path=/opt/ name=devopsschool.txt state=touch
+  - name: delete file
+    file: name=devopsschool.txt state=absent path=/opt/
+  - name: Reboot Server
+    reboot    
+...

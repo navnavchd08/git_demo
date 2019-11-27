@@ -1,0 +1,8 @@
+---
+  - name: Install multiple packages
+    hosts: test
+    tasks:
+      - name: Installing git & wget packages
+        yum:
+          name: git,wget
+          state: present

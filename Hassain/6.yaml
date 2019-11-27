@@ -1,0 +1,10 @@
+---
+- name: This sets up an httpd webserver
+  hosts: workr
+  become: yes
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd
+  - name: Install the httpd apps
+    service: name=httpd
+...

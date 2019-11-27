@@ -1,0 +1,7 @@
+---
+- name: Clone Repo
+  hosts: list1
+  tasks:
+  - name: Clone Repo on list1
+    git: repo='https://github.com/scmgalaxy/ansible-role-template' dest=/home/nav/myrepo clone=yes
+...	

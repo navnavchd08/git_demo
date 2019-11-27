@@ -1,0 +1,26 @@
+---
+- name: Consolidated Playbook
+  hosts: list1
+  tasks:
+  - name: Create Group for list1
+    group: name=deploy state=present
+  - name: Create User for list1
+    user: name=deploy-user shell=/bin/bash groups=deploy state=present
+  - name: Install httpd for list1
+    yum: name=httpd state=present
+  - name: Start httpd for list1
+    service: name=httpd state=started
+  - name: Create File for list1
+    file: name=index.html state=touch
+  - name: Copy File for list1
+    copy: src=index.html dest=/var/www/html/second.html
+  - name: Install git , wget for list1
+    yum: name=git,wget state=present
+  - name: Install git , wget for list1
+    git: repo='https://github.com/scmgalaxy/ansible-role-template' dest=/home/nav/myrepo clone=yes
+  - name: Reboot for list1
+    reboot: force=yes
+  - name: Touch and delete for list1
+    file: name=/opt/devopsschool.txt state=touch
+    file: name=/opt/devopsschool.txt state=absent
+ ...

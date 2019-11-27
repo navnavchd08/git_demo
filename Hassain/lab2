@@ -1,0 +1,92 @@
+Last login: Tue Nov 26 09:44:07 2019 from inlth5cg7041fjz.global.tesco.org
+[TESCOGLOBAL+vj01@d04tapmana001xx ~]$ ansible all -i d04tapwork001xx.t006.tpc.tgrc.tesco.org, -m yum -a"name=httpd state=present" -u  TESCOGLOBAL+VJ01 -k -b -K
+SSH password:
+BECOME password[defaults to SSH password]:
+d04tapwork001xx.t006.tpc.tgrc.tesco.org | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": true,
+    "changes": {
+        "installed": [
+            "httpd"
+        ]
+    },
+    "msg": "",
+    "rc": 0,
+    "results": [
+        "Loaded plugins: enabled_repos_upload, fastestmirror, package_upload, product-id,\n              : search-disabled-repos, subscription-manager, tracer_upload\nLoading mirror speeds from cached hostfile\nResolving Dependencies\n--> Running transaction check\n---> Package httpd.x86_64 0:2.4.6-89.el7.centos.1 will be installed\n--> Processing Dependency: httpd-tools = 2.4.6-89.el7.centos.1 for package: httpd-2.4.6-89.el7.centos.1.x86_64\n--> Processing Dependency: libaprutil-1.so.0()(64bit) for package: httpd-2.4.6-89.el7.centos.1.x86_64\n--> Processing Dependency: libapr-1.so.0()(64bit) for package: httpd-2.4.6-89.el7.centos.1.x86_64\n--> Running transaction check\n---> Package apr.x86_64 0:1.4.8-3.el7_4.1 will be installed\n---> Package apr-util.x86_64 0:1.5.2-6.el7 will be installed\n---> Package httpd-tools.x86_64 0:2.4.6-89.el7.centos.1 will be installed\n--> Finished Dependency Resolution\n\nDependencies Resolved\n\n================================================================================\n Package\n       Arch   Version          Repository                                  Size\n================================================================================\nInstalling:\n httpd x86_64 2.4.6-89.el7.centos.1\n                               Tesco_CentOS_7_CentOS_7_-_updates_-_x86_64 2.7 M\nInstalling for dependencies:\n apr   x86_64 1.4.8-3.el7_4.1  Tesco_CentOS_7_CentOS_7_-_os_-_x86_64      103 k\n apr-util\n       x86_64 1.5.2-6.el7      Tesco_CentOS_7_CentOS_7_-_os_-_x86_64       92 k\n httpd-tools\n       x86_64 2.4.6-89.el7.centos.1\n                               Tesco_CentOS_7_CentOS_7_-_updates_-_x86_64  91 k\n\nTransaction Summary\n================================================================================\nInstall  1 Package (+3 Dependent packages)\n\nTotal download size: 3.0 M\nInstalled size: 9.9 M\nDownloading packages:\n--------------------------------------------------------------------------------\nTotal                                              8.3 MB/s | 3.0 MB  00:00     \nRunning transaction check\nRunning transaction test\nTransaction test succeeded\nRunning transaction\n  Installing : apr-1.4.8-3.el7_4.1.x86_64                                   1/4 \n  Installing : apr-util-1.5.2-6.el7.x86_64                                  2/4 \n  Installing : httpd-tools-2.4.6-89.el7.centos.1.x86_64                     3/4 \n  Installing : httpd-2.4.6-89.el7.centos.1.x86_64                           4/4 \nUploading Package Profile\nUploading Tracer Profile\n  Verifying  : httpd-2.4.6-89.el7.centos.1.x86_64                           1/4 \n  Verifying  : httpd-tools-2.4.6-89.el7.centos.1.x86_64                     2/4 \n  Verifying  : apr-util-1.5.2-6.el7.x86_64                                  3/4 \n  Verifying  : apr-1.4.8-3.el7_4.1.x86_64                                   4/4 \n\nInstalled:\n  httpd.x86_64 0:2.4.6-89.el7.centos.1                                          \n\nDependency Installed:\n  apr.x86_64 0:1.4.8-3.el7_4.1                  apr-util.x86_64 0:1.5.2-6.el7   \n  httpd-tools.x86_64 0:2.4.6-89.el7.centos.1   \n\nComplete!\nUploading Enabled Repositories Report\nLoaded plugins: fastestmirror, product-id, subscription-manager\n"
+    ]
+}
+[TESCOGLOBAL+vj01@d04tapmana001xx ~]$ ansible all -i d04tapwork001xx.t006.tpc.tgrc.tesco.org, -m shell -a "which httpd" -u  TESCOGLOBAL+VJ01 -k -b -K
+SSH password:
+BECOME password[defaults to SSH password]:
+d04tapwork001xx.t006.tpc.tgrc.tesco.org | CHANGED | rc=0 >>
+/sbin/httpd
+
+[TESCOGLOBAL+vj01@d04tapmana001xx ~]$ ansible all -i d04tapwork001xx.t006.tpc.tgrc.tesco.org, -m shell -a "ps -eaf | grep httpd" -u  TESCOGLOBAL+VJ01 -k -b -K
+SSH password:
+BECOME password[defaults to SSH password]:
+d04tapwork001xx.t006.tpc.tgrc.tesco.org | CHANGED | rc=0 >>
+root      3165  3164  0 12:03 pts/0    00:00:00 /bin/sh -c ps -eaf | grep httpd
+root      3167  3165  0 12:03 pts/0    00:00:00 grep httpd
+
+[TESCOGLOBAL+vj01@d04tapmana001xx ~]$ ansible all -i d04tapwork001xx.t006.tpc.tgrc.tesco.org, -m file -a"name=index.html state=touch" -u  TESCOGLOBAL+VJ01 -k -b -K
+SSH password:
+BECOME password[defaults to SSH password]:
+d04tapwork001xx.t006.tpc.tgrc.tesco.org | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": true,
+    "dest": "index.html",
+    "gid": 0,
+    "group": "root",
+    "mode": "0640",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+[TESCOGLOBAL+vj01@d04tapmana001xx ~]$ ansible all -i d04tapwork001xx.t006.tpc.tgrc.tesco.org, -m file -a"name=index.html state=touch" -u  TESCOGLOBAL+VJ01 -k -b -K
+SSH password:
+BECOME password[defaults to SSH password]:
+d04tapwork001xx.t006.tpc.tgrc.tesco.org | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": true,
+    "dest": "index.html",
+    "gid": 0,
+    "group": "root",
+    "mode": "0640",
+    "owner": "root",
+    "size": 0,
+    "state": "file",
+    "uid": 0
+}
+[TESCOGLOBAL+vj01@d04tapmana001xx ~]$ ansible all -i d04tapwork001xx.t006.tpc.tgrc.tesco.org, -m yum -a "name=git" -u  TESCOGLOBAL+VJ01 -k -b -K
+SSH password:
+BECOME password[defaults to SSH password]:
+d04tapwork001xx.t006.tpc.tgrc.tesco.org | CHANGED => {
+    "ansible_facts": {
+        "discovered_interpreter_python": "/usr/bin/python"
+    },
+    "changed": true,
+    "changes": {
+        "installed": [
+            "git"
+        ]
+    },
+    "msg": "",
+    "rc": 0,
+    "results": [
+        "Loaded plugins: enabled_repos_upload, fastestmirror, package_upload, product-id,\n              : search-disabled-repos, subscription-manager, tracer_upload\nLoading mirror speeds from cached hostfile\nResolving Dependencies\n--> Running transaction check\n---> Package git.x86_64 0:1.8.3.1-20.el7 will be installed\n--> Processing Dependency: perl-Git = 1.8.3.1-20.el7 for package: git-1.8.3.1-20.el7.x86_64\n--> Processing Dependency: perl(Term::ReadKey) for package: git-1.8.3.1-20.el7.x86_64\n--> Processing Dependency: perl(Git) for package: git-1.8.3.1-20.el7.x86_64\n--> Processing Dependency: perl(Error) for package: git-1.8.3.1-20.el7.x86_64\n--> Running transaction check\n---> Package perl-Error.noarch 1:0.17020-2.el7 will be installed\n---> Package perl-Git.noarch 0:1.8.3.1-20.el7 will be installed\n---> Package perl-TermReadKey.x86_64 0:2.30-20.el7 will be installed\n--> Finished Dependency Resolution\n\nDependencies Resolved\n\n================================================================================\n Package\n        Arch   Version         Repository                                  Size\n================================================================================\nInstalling:\n git    x86_64 1.8.3.1-20.el7  Tesco_CentOS_7_CentOS_7_-_updates_-_x86_64 4.4 M\nInstalling for dependencies:\n perl-Error\n        noarch 1:0.17020-2.el7 Tesco_CentOS_7_CentOS_7_-_os_-_x86_64       32 k\n perl-Git\n        noarch 1.8.3.1-20.el7  Tesco_CentOS_7_CentOS_7_-_updates_-_x86_64  55 k\n perl-TermReadKey\n        x86_64 2.30-20.el7     Tesco_CentOS_7_CentOS_7_-_os_-_x86_64       31 k\n\nTransaction Summary\n================================================================================\nInstall  1 Package (+3 Dependent packages)\n\nTotal download size: 4.5 M\nInstalled size: 22 M\nDownloading packages:\n--------------------------------------------------------------------------------\nTotal                                               14 MB/s | 4.5 MB  00:00     \nRunning transaction check\nRunning transaction test\nTransaction test succeeded\nRunning transaction\n  Installing : 1:perl-Error-0.17020-2.el7.noarch                            1/4 \n  Installing : perl-TermReadKey-2.30-20.el7.x86_64                          2/4 \n  Installing : git-1.8.3.1-20.el7.x86_64                                    3/4 \n  Installing : perl-Git-1.8.3.1-20.el7.noarch                               4/4 \nUploading Package Profile\nUploading Tracer Profile\n  Verifying  : perl-Git-1.8.3.1-20.el7.noarch                               1/4 \n  Verifying  : 1:perl-Error-0.17020-2.el7.noarch                            2/4 \n  Verifying  : git-1.8.3.1-20.el7.x86_64                                    3/4 \n  Verifying  : perl-TermReadKey-2.30-20.el7.x86_64                          4/4 \n\nInstalled:\n  git.x86_64 0:1.8.3.1-20.el7                                                   \n\nDependency Installed:\n  perl-Error.noarch 1:0.17020-2.el7         perl-Git.noarch 0:1.8.3.1-20.el7    \n  perl-TermReadKey.x86_64 0:2.30-20.el7    \n\nComplete!\nUploading Enabled Repositories Report\nLoaded plugins: fastestmirror, product-id, subscription-manager\n"
+    ]
+}
+[TESCOGLOBAL+vj01@d04tapmana001xx ~]$ ansible all -i d04tapwork001xx.t006.tpc.tgrc.tesco.org, -m shell -a "which git" -u  TESCOGLOBAL+VJ01 -k -b -K
+SSH password:
+BECOME password[defaults to SSH password]:
+d04tapwork001xx.t006.tpc.tgrc.tesco.org | CHANGED | rc=0 >>
+/bin/git
+

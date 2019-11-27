@@ -1,0 +1,7 @@
+---
+- name: play7
+  hosts: localhost
+  tasks:
+  - name: clone
+    git: repo=https://github.com/vikas0204/vikas.git dest=/var/www/html/git2/ clone=yes
+...

@@ -1,0 +1,54 @@
+---
+
+- hosts: web
+  tasks:
+  - name: create a user group
+    group:
+      name: deploy
+      state: present
+      
+  - name: create a user group
+    user:
+      name: deploy-user
+      group: deploy
+      shell: /bin/bash
+
+  - name: install package named “httpd” in RHEL/centos
+    yum:
+      name: httpd
+      state: present
+
+  - name: start and enable the service named “httpd”
+    service:
+      name: httpd
+      state: started
+
+  - name: to create a file called “index.html” in /var/www/html
+    file:
+      name: index.html
+      state: touch
+
+  - name: copy to /var/www/html
+    copy:
+      src: index.html
+      dest: /var/www/html
+
+  - name: to create a file called “index.html” in /var/www/html
+    file:
+      name: second.html
+      state: touch
+
+  - name: copy to /var/www/html
+    copy:
+      src: second.html
+      dest: /var/www/html
+
+  - name: Write a Ansible commands to install a package called “git”, “wget”
+    package:
+      name: git,wget
+      state: present
+
+  - name: Download the repository
+    git:
+      repo: "https://github.com/scmgalaxy/ansible-role-template"
+      dest: "/home/vagrant/newrepo"

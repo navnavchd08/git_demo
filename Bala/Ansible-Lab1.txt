@@ -1,0 +1,13 @@
+ansible localhost -m group -a"name=deploy"
+ansible localhost -m group -a"name=deploy state=absent"
+
+ 
+
+
+ansible localost -m user -a"name=deploy-user group=deploy"
+
+ 
+
+
+ansible localhost -m yum -a"name=httpd state=present"
+ansible localhost -m service -a"name=httpd state=started"

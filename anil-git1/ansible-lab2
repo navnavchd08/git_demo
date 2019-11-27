@@ -1,0 +1,92 @@
+Ansible lab2 done
+play1.yaml
+---
+- name: play1
+  hosts: localhost
+  tasks:
+  - name: create a deploy group
+    group: name=deploy
+...
+play2.yaml 
+---
+- name: play2
+  hosts: localhost
+  tasks:
+  - name: create a user deploy-user
+    user: name=deploy-user group=deploy
+...
+play3.yaml
+---
+- name: play3
+  hosts: localhost
+  tasks:
+  - name: install httpd
+    yum: name=httpd
+---
+- name: play4
+  hosts: localhost
+  tasks:
+  - name: install httpd
+    service: name=httpd state=started
+...
+
+play5.yaml
+---
+- name: play5
+  hosts: localhost
+  tasks:
+  - name: create indexhtml
+    file: path=/var/www/html/index.html state=touch
+...
+play6.yaml
+---
+- name: play6
+  hosts: localhost
+  tasks:
+  - name: install git,wget
+    yum: name=git,wget
+...
+
+play7.yaml
+---
+- name: play7
+  hosts: localhost
+  tasks:
+  - name: clone
+    git: repo=https://github.com/vikas0204/vikas.git dest=/var/www/html/git2/ clone=yes
+...
+
+ play-merge.yaml
+---
+- name: play1
+  hosts: localhost
+  tasks:
+  - name: create a deploy group
+    group: name=deploy
+  - name: create a user deploy-user
+    user: name=deploy-user group=deploy
+  - name: install httpd
+    yum: name=httpd
+  - name: start httpd service
+    service: name=httpd state=started
+  - name: create index.html
+    file: path=/var/www/html/index.html state=touch
+  - name: install git,wget
+    yum: name=git,wget
+  - name: clone
+    git: repo=https://github.com/vikas0204/vikas.git dest=/var/www/html/git2/ clone=yes
+...
+
+play_final.yaml
+---
+- name: Final
+  hosts: localhost
+  tasks:
+- include: play1.yaml
+- include: play2.yaml
+- include: play3.yaml
+- include: play4.yaml
+- include: play5.yaml
+- include: play6.yaml
+- include: play7.yaml
+...

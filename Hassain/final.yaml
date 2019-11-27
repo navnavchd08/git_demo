@@ -1,0 +1,32 @@
+---
+- name: This sets up an httpd webserver
+  hosts: workr
+  become: yes
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd
+- name: httpd webserver start
+  hosts: workr
+  become: yes
+  tasks:
+  - name: Install the httpd apps
+    service: name=httpd
+- name: Touch a file
+  hosts: workr
+  become: yes
+  tasks:
+  - name: index file creation
+    file: name=index.html state=touch
+- name: pushing a file
+  hosts: workr
+  become: yes
+  tasks:
+  - name: pushing the index file
+    copy: src=index.html dest=/var/www/html/
+- name: Shell
+  hosts: workr
+  become: yes
+  tasks:
+  - name: which httpd
+    shell: which httpd
+...

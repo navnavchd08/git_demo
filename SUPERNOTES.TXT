@@ -1,0 +1,535 @@
+Tesco-Git-Ansible-Batch2-Nov
+http://bit.ly/2KbWznX
+=================================
+Prod - TescoX
+Mgmr - Mgrx
+-------------------
+     - EACH COMMIT SHOULD GO TO PRODUCTION.
+     - Quality REDEFINED
+                -------
+     - Cost Reduction
+-----------------------------
+        DEVOPS
+https://www.youtube.com/watch?v=-VaVmb_UOC8
+================================================
+Hiring 
+------------------
+Architect - JIRA -> Confulence
+15 DEV - 15 MODULE
+    Code Integ - Git
+    Code Review
+            Peer Code Review - Gerrit
+            Static Code Review - SonarQube
+Build mgmt --- Maven - MSBUild,
+Unit Testing - Junit - NUNIT
+Packaging -
+            APP
+            SYS
+Archiving - Nexus 
+----------------------------------------
+Deployment 2 
+                QA
+                Staging
+                PRE PROD
+--------------------------------------------
+TescoX55.6 -- 100 SERVER 
+-------------------------------------
+           50 LINUX 50 WINDOWS
+           50 APACHE 50 NGINX
+           25 TOM 25 JBOS 25 WS 26 WL
+           25 MYSQL 25 MS 25 OR 25 PS
+           -----------------------------
+           1 Deployment - 9 mins....
+           100 Dep ---> 9 mins.
+           -------------------------
+            Parrell Deployment....
+PROGRAMMING - Ansible -> Puppet -> Chef -> Salt -> Cfengine
+GUI - Octopus Deploy --> UDeploy 
+====================================
+AT
+
+Code Coverage - 
+===================================================================
+                        CI
+Plan -> Code -> Code Review -> Build -> UT - > ARCHIVE ->Dep2qa ->AT - CC
+=======================================================================
+JIRA _ GIT - SOanr- Maven - JUNIT -jar-Nexus----Ansible - Sel - Jacoco
+==========================================================================
+                            JENKINS
+                    -------------------------
+                    Scheduling
+                    Dashboarding
+                    Notification
+                    =====================
+https://www.devopsschool.com/path/
+==========================================================
+What is Git?
+        Versioning tool
+                WHO
+                WHEN
+                What
+                WHERE
+                WHY?
+        Source Code mgmt tool
+        ----------
+        GIT IS DISTRIBUTED.
+        ----------------
+        FREE
+        OPEN Source
+        Dev by Linus Tovarld
+
+Why GIt?
+        WHO
+        WHEN
+        What
+        WHERE
+        WHY?
+
+Other tool
+RCS -> CVS -> SVN -> Git
+HARVEST -> VSS -> ClearCase -> perforce -> Mercury
+
+====================================================
+SERVER-CLIENT VS DISTRIBUTED
+----------------------------------------------------
+RCS -> CVS -> SVN 
+HARVEST -> VSS -> ClearCase -> perforce -> Mercury
+=======================================
+How to install git?
+    Windows - git-scm.com
+                using EXE - git bash
+    RHEL - sudo yum install git
+    UB - sudo apt-get install git
+    Mac - git-scm.com - DMG - 
+======================================
+Basic workflow to work with git?
+------------------------------
+Step 1 - Create a repo
+git init
+
+Step 2 - Create a file using IDE
+
+Step 3 - Add a file to git[Adding a file from working to stage]
+git add file1.txt
+
+-----------------------------------
+git config user.name "Rajesh Kumar"
+git config user.email "devops@rajeshkumar.xyz"
+git config --list
+-------.git/config-----------------
+-----------------------------------
+Step 4 - Commit a file to Git. [ Staging to Repo]
+git commit -m"Adding my first file"
+
+Step 5 - See the commited file
+git log
+
+Step 6 - See what has been commited.
+git show commit-id
+
+-----------------
+navnavchd08
+abhishek086
+harikrishnankutteri
+Veekshith1991
+gdineshdk
+ranjeethakki
+balachsm
+mandara70
+anil-git1
+
+http://bit.ly/2OgjBMI
+=======================
+config
+        SYSTEM
+
+
+
+
+$ git log
+commit 47c7c06fb09cbfa36dc5a0c6c832079a1eff47ed (HEAD -> master)
+Author: Rajesh Kumar <devops@rajeshkumar.xyz>
+Date:   Mon Nov 25 15:23:41 2019 +0530
+
+    Adding my first file
+
+47c7c06fb09cbfa36dc5a0c6c832079a1eff47ed 
+    UUID by SHA1 - CHECKSUM
+    commit id - 40 - 7
+
+===========================================
+git status
+==========================================
+How to add multiple files?
+How to commit selective not all
+How to edit and modify a file ?
+How to creare a dir?
+how to rename a file
+How to move a file?
+How to delete a file?
+
+ 502  ls
+  503  ls
+  504  vi file1.txt
+  505  git status
+  506  git add .
+  507  git status
+  508  git commit -m"adding"
+  509  clear
+  510  git status
+  511  ls
+  512  clear
+  513  mkdir src
+  514  git status
+  515  ls
+  516  touch src/filex
+  517  git status
+  518  git add .
+  519  git status
+  520  git commit -m"addng dir"
+  521  git status
+  522  git log
+  523  clear
+  524  ls
+  525  git status
+  526  mv file1.txt
+  527  mv file1.txt file11.txt
+  528  git status
+  529  git add .
+  530  git status
+  531  ls
+  532  git mv file2.txt file22.txt
+  533  git status
+  534  git commit -m"rename"
+  535  ls
+  536  clear
+  537  ls
+  538  git mv file3.txt src/
+  539  git status
+  540  git commit -m"moving"
+  541  clear
+  542  ls
+  543  clear
+  544  clear
+  545  git log
+  546  clear
+  547  git log --oneline
+  548  ls
+  549  git rm file5.txt
+  550  git status
+  551  git commit -m"deleting"
+  552  git log --oneline
+  553  ls
+  554  git checkout da869c5
+  555  clear
+  556  ls
+  557  git checkout master
+  558  clear
+  559  ls
+  560  ls
+  561  history
+
+=================================================
+
+How to undo?
+ 561  history
+  562  clear
+  563  git status
+  564  touch clean.txt
+  565  git status
+  566  clear
+  567  git status
+  568  git clean -f -d
+  569  git status
+  570  touch reset.txt
+  571  clear
+  572  git statis
+  573  git status
+  574  git add .
+  575  clear
+  576  git status
+  577  git reset reset.txt
+  578  git status
+  579  git clean -f -d
+  580  clear
+  581  ls
+  582  ls
+  583  touch fdfd
+  584  git clean
+  585  git clean -d
+  586  git clean -d -f
+  587  clear
+  588  ls
+  589  touch revert.txt
+  590  git add .
+  591  git commit -m"Good Commit"
+  592  clear
+  593  git log --oneline
+  594  git log --oneline
+  595  touch bad.txt;git add .;git commit -m"bad commit"
+  596  git log --oneline
+  597  ls
+  598  git revert 900f51d
+  599  git log --oneline
+  600  git diff 29c7c30 900f51d
+  601  git diff 29c7c30 b553c34
+  602  ls
+  603  history
+  604  history
+===========================
+WHAT IS HEAD - 
+        HEAD -> master
+        IS A TIP OF CURR BRANCH.
+              NOT A TOP OF CURR BRANCH
+WHAT IS BRANCH -
+        is TOP COMMIT OF THE DEV LINE.
+
+================================
+Working with remote repo?
+==================================  
+git pull karan@ipadd:/opt/.git
+git push karan@ipadd:/opt/.git
+
+Github      FREE(Community)     PAID         
+                                CLOUD       BEHIND FIREWALL
+gitlab
+bitbucket
+Gerrit
+--------------------------------
+ 485  git push https://github.com/devopsschool-lab-exercise/tesco-demo.git master
+  486  cd ..
+  487  clear
+  488  ls
+  489  git clone https://github.com/devopsschool-lab-exercise/tesco-demo.git
+  490  clear
+  491  ls
+  492  cd tesco-demo/
+  493  clear
+  494  ls
+  495  touch diffguy.txt;git add .;git commit -m"diff guy"
+  496  git config user.name "Rajesh Kumar"
+  497  git config user.email "devops@rajeshkumar.xyz"
+  498  touch diffguy.txt;git add .;git commit -m"diff guy"
+  499  git push origin master
+  500  cd /e
+  501  cls
+  502  clear
+  503  ls
+  504  cd tesco/
+  505  clear
+  506  ls
+  507  cd tesco-demo/
+  508  clear
+  509  ls
+  510  git push origin master
+  511  git push origin master
+  512  clear
+  513  history
+
+
+85  git push https://github.com/devopsschool-lab-exercise/tesco-demo.git master
+  486  cd ..
+  487  clear
+  488  ls
+  489  git clone https://github.com/devopsschool-lab-exercise/tesco-demo.git
+  490  clear
+  491  ls
+  492  cd tesco-demo/
+  493  clear
+  494  ls
+  495  touch diffguy.txt;git add .;git commit -m"diff guy"
+  496  git config user.name "Rajesh Kumar"
+  497  git config user.email "devops@rajeshkumar.xyz"
+  498  touch diffguy.txt;git add .;git commit -m"diff guy"
+  499  git push origin master
+  500  cd /e
+  501  cd tesco/
+  502  clear
+  503  ls
+  504  cd repo1/
+  505  ls
+  506  git remote add origin https://github.com/devopsschool-lab-exercise/tesco-demo.git]
+  507  git push origin master
+  508  git help remote
+  509  git remote remove origin
+  510  git remote add origin https://github.com/devopsschool-lab-exercise/tesco-demo.git
+  511  git push origin mast
+  512  git push origin master
+  513  git pull origin master
+  514  ls
+  515  git push origin master
+  516  clear
+  517  ls
+  518  cd ..
+  519  ls
+  520  cd clear
+  521  clear
+  522  history
+
+====================================
+Branching and Merging
+
+
+TYPES OF BRANCHES
+----------------------
+Local Branch - READ - WRITE
+Remote Branch - READ ONLY 
+Temp Branch - READ - WRITE BUT NOT RECOMMENDED
+
+
+PULL --- FETCH + MergE
+536  ls
+  537  git clone https://github.com/devopsschool-lab-exercise/tesco-demo user1
+  538  git clone https://github.com/devopsschool-lab-exercise/tesco-demo user2
+  539  clear
+  540  ls
+  541  cd user2/
+  542  clear
+  543  ls
+  544  git config user.email "devops@rajeshkumar.xyz"
+  545  git config user.name "Rajesh Kumar"
+  546  clear
+  547  ls
+  548  ls
+  549  ls
+  550  touch user2.txt
+  551  clear
+  552  ls
+  553  ls
+  554  git branch -a
+  555  git fetch origin master
+  556  ls
+  557  git branch -a
+  558  git checkout remotes/origin/master
+  559  ls
+  560  git status
+  561  ls
+  562  git g
+  563  git checkout master
+  564  git branch
+  565  pwd
+  566  clear
+  567  ls
+  568  git branch -a
+  569  git merge remotes/origin/master
+  570  ls
+  571  history
+
+
+Merging Scanario
+========================
+3 merging Scanario
+- FAST FORWARD
+- Recusrive
+- Cherry Picking
+
+ 498  git clone https://github.com/devopsschool-lab-exercise user1
+  499  git clone https://github.com/devopsschool-lab-exercise user2
+  500  cd /e/tesco/
+  501  ls
+  502  cd user1
+  503  clear
+  504  ls
+  505  touch user1.txt;git add .;git commit -m"adding user1";git push origin master
+  506  git config user.name "Rajesh Kumar"
+  507  git config user.email "devops@rajeshkumar.xyz"
+  508  clear
+  509  ls
+  510  touch user1.txt;git add .;git commit -m"adding user1";git push origin master
+  511  clear
+  512  ls
+  513  touch recur1.txt;git add .;git commit -m"adding recur1"
+  514  git branch1
+  515  git branch1
+  516  git branch
+  517  clear
+  518  git checkout fea1
+  519  git checkout -b fea1
+  520  touch fea1.txt;git add .;git commit -m"adding fea1.txt"
+  521  touch fea2.txt;git add .;git commit -m"adding fea2.txt"
+  522  clear
+  523  git checkout master
+  524  touch recur2.txt;git add .;git commit -m"adding recur2"
+  525  clear
+  526  ls
+  527  touch recur3.txt;git add .;git commit -m"adding recur3"
+  528  git checkout fea1
+  529  touch fea3.txt;git add .;git commit -m"adding fea3.txt"
+  530  clear
+  531  git log --oneline
+  532  git diff master
+  533  git checkout
+  534  git checkout master
+  535  git diff fea1
+  536  clear
+  537  ls
+  538  git merge fea1
+  539  git log --oneline
+  540  git checkout fea1
+  541  touch cherry1.txt;git add .;git commit -m"adding cherrry1.txt"
+  542  touch cherry2.txt;git add .;git commit -m"adding cherrry2.txt"
+  543  touch cherry3.txt;git add .;git commit -m"adding cherrry3.txt"
+  544  touch cherry4.txt;git add .;git commit -m"adding cherrry4.txt"
+  545  git log --oneline
+  546  git checkout master
+  547  ls
+  548  git cherry-pick 3b8b0fe
+  549  ls
+  550  history
+
+
+git config
+    SYSTEM - 
+        C:\tools\Git\etc\gitconfig
+    GLOBAL
+        C:\Users\Rajesh Kumar
+    REPO=LOCAL
+        .git/config
+=============================
+Conflict Resolution
+RESET 
+    SOFT
+    MIXED
+    HARD
+
+====================================
+Video 
+https://www.youtube.com/channel/UCrXr49kBvXJeQMMl2693c4g
+
+Slides
+https://www.devopsschool.com/slides
+https://www.devopsschool.com/pdf
+
+Tutotials
+https://www.devopsschool.com/tutorial/git
+
+Blogs
+https://www.devopsschool.com/blog
+
+Notes
+https://github.com/devopsschool-lab-exercise/Tesco-Git-Ansible-Batch2-Nov
+
+Quiz
+https://www.devopsschool.com/lms
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

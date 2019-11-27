@@ -1,0 +1,8 @@
+---
+- name: pushing a file
+  hosts: workr
+  become: yes
+  tasks:
+  - name: pushing the index file
+    copy: src=/home/TESCOGLOBAL+vj01/index.html dest=/var/www/html/
+...

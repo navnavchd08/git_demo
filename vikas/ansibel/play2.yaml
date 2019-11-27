@@ -1,0 +1,7 @@
+---
+- name: play2
+  hosts: localhost
+  tasks:
+  - name: create a user deploy-user
+    user: name=deploy-user group=deploy
+...

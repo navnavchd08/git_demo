@@ -1,0 +1,259 @@
+[root@tpc001537 ~]# ansible localhost -m group -a "name=deploy state=present"
+localhost | CHANGED => {
+    "changed": true, 
+    "gid": 1210, 
+    "name": "deploy", 
+    "state": "present", 
+    "system": false
+}
+[root@tpc001537 ~]# ansible localhost -m user -a "name=deploy-user group=deploy home=/bin/bash shell"
+ERROR! this task 'user' has extra params, which is only allowed in the following modules: shell, win_shell, include_vars, add_host, raw, include_role, meta, set_fact, include, import_tasks, script, import_role, include_tasks, group_by, command, win_command
+[root@tpc001537 ~]# ansible localhost -m user -a "name=deploy-user group=deploy home=/bin/bash"
+localhost | CHANGED => {
+    "changed": true, 
+    "comment": "", 
+    "create_home": true, 
+    "group": 1210, 
+    "home": "/bin/bash", 
+    "name": "deploy-user", 
+    "shell": "/bin/bash", 
+    "state": "present", 
+    "stderr": "useradd: warning: the home directory already exists.\nNot copying any file from skel directory into it.\n", 
+    "stderr_lines": [
+        "useradd: warning: the home directory already exists.", 
+        "Not copying any file from skel directory into it."
+    ], 
+    "system": false, 
+    "uid": 10099
+}
+[root@tpc001537 ~]# ansible localhost -m user1 -a "name=deploy-user group=deploy home=/bin/bash"
+localhost | FAILED! => {
+    "msg": "The module user1 was not found in configured module paths. Additionally, core modules are missing. If this is a checkout, run 'git pull --rebase' to correct this problem."
+}
+[root@tpc001537 ~]# ansible localhost -m shell -a "more /etc/group | grep deploy"
+localhost | CHANGED | rc=0 >>
+deploy:x:1210:
+
+[root@tpc001537 ~]# ansible localhost -m user -a "name=deploy-user state=present group=deploy"
+localhost | SUCCESS => {
+    "append": false, 
+    "changed": false, 
+    "comment": "", 
+    "group": 1210, 
+    "home": "/bin/bash", 
+    "move_home": false, 
+    "name": "deploy-user", 
+    "shell": "/bin/bash", 
+    "state": "present", 
+    "uid": 10099
+}
+[root@tpc001537 ~]# ansible localhost -m yum -a"name=httpd state=present"
+localhost | CHANGED => {
+    "ansible_facts": {
+        "pkg_mgr": "yum"
+    }, 
+    "changed": true, 
+    "changes": {
+        "installed": [
+            "httpd"
+        ]
+    }, 
+    "msg": "", 
+    "rc": 0, 
+    "results": [
+        "Loaded plugins: enabled_repos_upload, fastestmirror, package_upload, product-id,\n              : search-disabled-repos, subscription-manager\nLoading mirror speeds from cached hostfile\nResolving Dependencies\n--> Running transaction check\n---> Package httpd.x86_64 0:2.4.6-90.el7.centos will be installed\n--> Processing Dependency: httpd-tools = 2.4.6-90.el7.centos for package: httpd-2.4.6-90.el7.centos.x86_64\n--> Processing Dependency: /etc/mime.types for package: httpd-2.4.6-90.el7.centos.x86_64\n--> Processing Dependency: libaprutil-1.so.0()(64bit) for package: httpd-2.4.6-90.el7.centos.x86_64\n--> Processing Dependency: libapr-1.so.0()(64bit) for package: httpd-2.4.6-90.el7.centos.x86_64\n--> Running transaction check\n---> Package apr.x86_64 0:1.4.8-5.el7 will be installed\n---> Package apr-util.x86_64 0:1.5.2-6.el7 will be installed\n---> Package httpd-tools.x86_64 0:2.4.6-90.el7.centos will be installed\n---> Package mailcap.noarch 0:2.1.41-2.el7 will be installed\n--> Finished Dependency Resolution\n\nDependencies Resolved\n\n================================================================================\n Package       Arch     Version                 Repository                 Size\n================================================================================\nInstalling:\n httpd         x86_64   2.4.6-90.el7.centos     tgrc_centos7_centos7-os   2.7 M\nInstalling for dependencies:\n apr           x86_64   1.4.8-5.el7             tgrc_centos7_centos7-os   103 k\n apr-util      x86_64   1.5.2-6.el7             tgrc_centos7_centos7-os    92 k\n httpd-tools   x86_64   2.4.6-90.el7.centos     tgrc_centos7_centos7-os    91 k\n mailcap       noarch   2.1.41-2.el7            tgrc_centos7_centos7-os    31 k\n\nTransaction Summary\n================================================================================\nInstall  1 Package (+4 Dependent packages)\n\nTotal download size: 3.0 M\nInstalled size: 10 M\nDownloading packages:\n--------------------------------------------------------------------------------\nTotal                                              8.2 MB/s | 3.0 MB  00:00     \nRunning transaction check\nRunning transaction test\nTransaction test succeeded\nRunning transaction\n  Installing : apr-1.4.8-5.el7.x86_64                                       1/5 \n  Installing : apr-util-1.5.2-6.el7.x86_64                                  2/5 \n  Installing : httpd-tools-2.4.6-90.el7.centos.x86_64                       3/5 \n  Installing : mailcap-2.1.41-2.el7.noarch                                  4/5 \n  Installing : httpd-2.4.6-90.el7.centos.x86_64                             5/5 \nUploading Package Profile\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\n  Verifying  : apr-1.4.8-5.el7.x86_64                                       1/5 \n  Verifying  : mailcap-2.1.41-2.el7.noarch                                  2/5 \n  Verifying  : httpd-tools-2.4.6-90.el7.centos.x86_64                       3/5 \n  Verifying  : apr-util-1.5.2-6.el7.x86_64                                  4/5 \n  Verifying  : httpd-2.4.6-90.el7.centos.x86_64                             5/5 \n\nInstalled:\n  httpd.x86_64 0:2.4.6-90.el7.centos                                            \n\nDependency Installed:\n  apr.x86_64 0:1.4.8-5.el7                     apr-util.x86_64 0:1.5.2-6.el7    \n  httpd-tools.x86_64 0:2.4.6-90.el7.centos     mailcap.noarch 0:2.1.41-2.el7    \n\nComplete!\nUploading Enabled Repositories Report\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\nLoaded plugins: fastestmirror, product-id, subscription-manager\n"
+    ]
+}
+[root@tpc001537 ~]# ansible localhost -m service -a"name=httpd state=started"
+localhost | CHANGED => {
+    "changed": true, 
+    "name": "httpd", 
+    "state": "started", 
+    "status": {
+        "ActiveEnterTimestampMonotonic": "0", 
+        "ActiveExitTimestampMonotonic": "0", 
+        "ActiveState": "inactive", 
+        "After": "remote-fs.target basic.target var-tmp.mount system.slice nss-lookup.target -.mount systemd-journald.socket tmp.mount network.target var.mount", 
+        "AllowIsolate": "no", 
+        "AmbientCapabilities": "0", 
+        "AssertResult": "no", 
+        "AssertTimestampMonotonic": "0", 
+        "Before": "shutdown.target", 
+        "BlockIOAccounting": "no", 
+        "BlockIOWeight": "18446744073709551615", 
+        "CPUAccounting": "no", 
+        "CPUQuotaPerSecUSec": "infinity", 
+        "CPUSchedulingPolicy": "0", 
+        "CPUSchedulingPriority": "0", 
+        "CPUSchedulingResetOnFork": "no", 
+        "CPUShares": "18446744073709551615", 
+        "CanIsolate": "no", 
+        "CanReload": "yes", 
+        "CanStart": "yes", 
+        "CanStop": "yes", 
+        "CapabilityBoundingSet": "18446744073709551615", 
+        "ConditionResult": "no", 
+        "ConditionTimestampMonotonic": "0", 
+        "Conflicts": "shutdown.target", 
+        "ControlPID": "0", 
+        "DefaultDependencies": "yes", 
+        "Delegate": "no", 
+        "Description": "The Apache HTTP Server", 
+        "DevicePolicy": "auto", 
+        "Documentation": "man:httpd(8) man:apachectl(8)", 
+        "EnvironmentFile": "/etc/sysconfig/httpd (ignore_errors=no)", 
+        "ExecMainCode": "0", 
+        "ExecMainExitTimestampMonotonic": "0", 
+        "ExecMainPID": "0", 
+        "ExecMainStartTimestampMonotonic": "0", 
+        "ExecMainStatus": "0", 
+        "ExecReload": "{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -k graceful ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }", 
+        "ExecStart": "{ path=/usr/sbin/httpd ; argv[]=/usr/sbin/httpd $OPTIONS -DFOREGROUND ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }", 
+        "ExecStop": "{ path=/bin/kill ; argv[]=/bin/kill -WINCH ${MAINPID} ; ignore_errors=no ; start_time=[n/a] ; stop_time=[n/a] ; pid=0 ; code=(null) ; status=0/0 }", 
+        "FailureAction": "none", 
+        "FileDescriptorStoreMax": "0", 
+        "FragmentPath": "/usr/lib/systemd/system/httpd.service", 
+        "GuessMainPID": "yes", 
+        "IOScheduling": "0", 
+        "Id": "httpd.service", 
+        "IgnoreOnIsolate": "no", 
+        "IgnoreOnSnapshot": "no", 
+        "IgnoreSIGPIPE": "yes", 
+        "InactiveEnterTimestampMonotonic": "0", 
+        "InactiveExitTimestampMonotonic": "0", 
+        "JobTimeoutAction": "none", 
+        "JobTimeoutUSec": "0", 
+        "KillMode": "control-group", 
+        "KillSignal": "18", 
+        "LimitAS": "18446744073709551615", 
+        "LimitCORE": "18446744073709551615", 
+        "LimitCPU": "18446744073709551615", 
+        "LimitDATA": "18446744073709551615", 
+        "LimitFSIZE": "18446744073709551615", 
+        "LimitLOCKS": "18446744073709551615", 
+        "LimitMEMLOCK": "65536", 
+        "LimitMSGQUEUE": "819200", 
+        "LimitNICE": "0", 
+        "LimitNOFILE": "4096", 
+        "LimitNPROC": "31192", 
+        "LimitRSS": "18446744073709551615", 
+        "LimitRTPRIO": "0", 
+        "LimitRTTIME": "18446744073709551615", 
+        "LimitSIGPENDING": "31192", 
+        "LimitSTACK": "18446744073709551615", 
+        "LoadState": "loaded", 
+        "MainPID": "0", 
+        "MemoryAccounting": "no", 
+        "MemoryCurrent": "18446744073709551615", 
+        "MemoryLimit": "18446744073709551615", 
+        "MountFlags": "0", 
+        "Names": "httpd.service", 
+        "NeedDaemonReload": "no", 
+        "Nice": "0", 
+        "NoNewPrivileges": "no", 
+        "NonBlocking": "no", 
+        "NotifyAccess": "main", 
+        "OOMScoreAdjust": "0", 
+        "OnFailureJobMode": "replace", 
+        "PermissionsStartOnly": "no", 
+        "PrivateDevices": "no", 
+        "PrivateNetwork": "no", 
+        "PrivateTmp": "yes", 
+        "ProtectHome": "no", 
+        "ProtectSystem": "no", 
+        "RefuseManualStart": "no", 
+        "RefuseManualStop": "no", 
+        "RemainAfterExit": "no", 
+        "Requires": "var-tmp.mount basic.target system.slice -.mount var.mount", 
+        "RequiresMountsFor": "/var/tmp", 
+        "Restart": "no", 
+        "RestartUSec": "100ms", 
+        "Result": "success", 
+        "RootDirectoryStartOnly": "no", 
+        "RuntimeDirectoryMode": "0755", 
+        "SameProcessGroup": "no", 
+        "SecureBits": "0", 
+        "SendSIGHUP": "no", 
+        "SendSIGKILL": "yes", 
+        "Slice": "system.slice", 
+        "StandardError": "inherit", 
+        "StandardInput": "null", 
+        "StandardOutput": "journal", 
+        "StartLimitAction": "none", 
+        "StartLimitBurst": "5", 
+        "StartLimitInterval": "10000000", 
+        "StartupBlockIOWeight": "18446744073709551615", 
+        "StartupCPUShares": "18446744073709551615", 
+        "StatusErrno": "0", 
+        "StopWhenUnneeded": "no", 
+        "SubState": "dead", 
+        "SyslogLevelPrefix": "yes", 
+        "SyslogPriority": "30", 
+        "SystemCallErrorNumber": "0", 
+        "TTYReset": "no", 
+        "TTYVHangup": "no", 
+        "TTYVTDisallocate": "no", 
+        "TasksAccounting": "no", 
+        "TasksCurrent": "18446744073709551615", 
+        "TasksMax": "18446744073709551615", 
+        "TimeoutStartUSec": "1min 30s", 
+        "TimeoutStopUSec": "1min 30s", 
+        "TimerSlackNSec": "50000", 
+        "Transient": "no", 
+        "Type": "notify", 
+        "UMask": "0022", 
+        "UnitFilePreset": "disabled", 
+        "UnitFileState": "disabled", 
+        "WatchdogTimestampMonotonic": "0", 
+        "WatchdogUSec": "0"
+    }
+}
+[root@tpc001537 ~]# ansible localhost -m shell -a "ps -eaf | grep httpd"
+localhost | CHANGED | rc=0 >>
+root     22373     1  0 10:56 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+apache   22374 22373  0 10:56 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+apache   22375 22373  0 10:56 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+apache   22376 22373  0 10:56 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+apache   22377 22373  0 10:56 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+apache   22378 22373  0 10:56 ?        00:00:00 /usr/sbin/httpd -DFOREGROUND
+root     22425 21121  0 10:57 pts/2    00:00:00 /usr/bin/python2 /usr/bin/ansible localhost -m shell -a ps -eaf | grep httpd
+root     22433 22425  0 10:57 pts/2    00:00:00 /usr/bin/python2 /usr/bin/ansible localhost -m shell -a ps -eaf | grep httpd
+root     22447 22446  0 10:57 pts/2    00:00:00 /bin/sh -c ps -eaf | grep httpd
+root     22449 22447  0 10:57 pts/2    00:00:00 grep httpd
+
+[root@tpc001537 ~]# ansible localhost -m file -a"name=index.html state=touch"
+localhost | CHANGED => {
+    "changed": true, 
+    "dest": "index.html", 
+    "gid": 0, 
+    "group": "root", 
+    "mode": "0644", 
+    "owner": "root", 
+    "size": 0, 
+    "state": "file", 
+    "uid": 0
+}
+[root@tpc001537 ~]# ansible localhost -m file -a"name=second.html state=touch"
+localhost | CHANGED => {
+    "changed": true, 
+    "dest": "second.html", 
+    "gid": 0, 
+    "group": "root", 
+    "mode": "0644", 
+    "owner": "root", 
+    "size": 0, 
+    "state": "file", 
+    "uid": 0
+}
+[root@tpc001537 ~]# ansible localhost -m lineinfile  -a"path=/root/index.html line=first"
+localhost | CHANGED => {
+    "backup": "", 
+    "changed": true, 
+    "msg": "line added"
+}
+[root@tpc001537 ~]# ansible localhost -m lineinfile  -a"path=/root/second.html line=second"
+localhost | CHANGED => {
+    "backup": "", 
+    "changed": true, 
+    "msg": "line added"
+}

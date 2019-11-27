@@ -1,0 +1,555 @@
+What is Ansible?
+=========================
+        Config mgmt tool.
+        Dev in PYTHON
+        From REDHAT
+        Release
+            Ansible - CMD -FREE - Community
+            Ansible Tower CMD+GUI -PAID - ENterprise
+        Latest 2.9
+        Agent Less
+        
+
+What is Config mgmt?
+=========================
+        SERVER(S) Config mgmt
+
+What is there in ONE SERVER?
+
+SOFTWARE
+    SOFTWARE
+    file
+    Services
+    Bash
+    cmd
+    ps
+    yum
+    apt
+HYPERVISIOR - Hardware
+                    CPU
+                    RAM
+                    HDD
+PEOPLE
+    USERS
+    Group
+PROCESS
+    policy
+    firewalls
+
+    ----------------------------
+    USING ANSIBLE you MANAGE A Config of it.
+                                        MULTIPLE SERVERS CONFIG.
+    
+Why Ansible?
+    Easy to LEARN, SHARE, EXTEND, DEBUG, TEST, 
+        Compare to 
+                JAVA - PYTHON  - RUBY
+    SHELL SCIPTING - BATCH SCRIPTIN.
+    ---We need a CROSS PLATFORM
+
+    IDEOMPOTENT
+    DESIRE -----> ACTUAL
+    IF DESIRE ~ ACTUAL ---> NO CHANGE
+    IF DESIRE !~ actual ---> do changes
+
+    10 sTEPS ---> 1 MINS ----> 10 MINS
+    2 sTEPS ---> 2 mINS ---> 2 MINS.
+===================================
+
+OTHER TOOLS - aNSIBLE-> pUPPET-> cHEF - 
+================================================================
+Roles in Ansible?
+================================
+Dev  - Write a ansible program
+Admin - Ops - Manager SERVERS, Apply ansible program in the server.
+===============================
+
+Architecture of Ansible.
+======================================
+Ansible Control Server(ACS)  --------> Ansible Remote Server(ARS)
+--- LINUX                               - ANY 
+--- 64 BIT                              - ANY
+--- Python 2.7                          
+                                        - LINUX Python 2.4
+                                        - Windows - PS3.X and DOTNET4
+
+                        ssh           - linux
+                        WINRM(http)  - wINDOWS
+-----------------------------------------------------------
+            pythON 3.x Is not an upgrade of 2.x
+
+What we have in ACS?                    What we have in ARS?
+- Modules                               NOTHING.
+- Playbook
+- Config
+- Inventory
+
+============================================================
+How to become a Ansible programmers?
+============================================================
+JDK ---> .JAVA              -->.JAVA(S) -> .Class(S) -- JAR --> WAR
+            -- MAIN METHOD
+            -- Variables
+            -- Condition
+            -- Looping
+            -- Operators
+            -- Methods
+
+Ansible -> .YAML(Playbook)        ---> .YAMLS(PlaybookS) --> ROLE 
+            -- MAIN METHOD
+            -- Variables
+            -- Condition
+            -- Looping
+            -- Operators
+            -- Methods
+====================================================
+13.233.74.211
+How to install Ansible?
+https://www.devopsschool.com/blog/how-to-install-ansible-in-centos-7-rhel-7/
+
+$ sudo yum install wget -y
+$ wget https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+$ yum install https://dl.fedoraproject.org/pub/epel/epel-release-latest-7.noarch.rpm
+$ sudo rpm -i epel-release-latest-7.noarch.rpm
+$ sudo yum update -y 
+$ sudo yum install ansible -y
+$ systemctl stop firewalld
+$ systemctl disable firewalld
+===========================================
+Learning flow of Ansible
+http://devopsschool.com/tutorial/ansible/ansible-training-flow.html
+
+	using ADHOC command 
+		Do one task in ONE MACHINE(localhost)
+		Do one task in ONE REMOTE MACHINE
+		Do one task in MULTIPLE REMOTE MACHINES using Inventory
+		Do one task in MULTIPLE REMOTE MACHINES using group in Inventory
+	using Playbook(Program)
+		Do Multiple tasks(Playbook) in ONE MACHINE(localhost)
+		Do Multiple tasks(Playbook) in ONE REMOTE MACHINE
+		Do Multiple tasks(Playbook) in MULTIPLE REMOTE MACHINE using Inventory
+		Do Multiple tasks(Playbook) in MULTIPLE REMOTE MACHINE using group in Inventory
+		Do Multiple tasks(Playbook) in MULTIPLE REMOTE MACHINE using group of group in Inventory
+		Do Multiple tasks(Playbook) in MULTIPLE REMOTE MACHINE using environment directory Inventory 
+	using Role(Program)
+		Do One Role in in ONE MACHINE(localhost)
+		Do Multiple Roles in ONE REMOTE MACHINE
+		Do Multiple Roles in MULTIPLE REMOTE MACHINE using Inventory
+		Do Multiple Roles in MULTIPLE REMOTE MACHINE using group in Inventory
+		Do Multiple Roles in MULTIPLE REMOTE MACHINE using group of group in Inventory
+		Do Multiple Roles in MULTIPLE REMOTE MACHINE using environment directory Inventory
+
+
+	using ADHOC command 
+		Do one task in ONE MACHINE(localhost)
+		Do one task in ONE REMOTE MACHINE
+		Do one task in MULTIPLE REMOTE MACHINES using Inventory
+		Do one task in MULTIPLE REMOTE MACHINES using group in Inventory
+
+Project - Setup a webserver.
+
+Pshuocode 
+- Install httpd server
+- Start a httpd server
+- Create a file index.html
+- Copy a index.html to /var/www/html/
+===========================================================
+What is Modules?
+        - Would do ONE work.
+    
+How many modules 1000++
+Where to find it out?
+https://docs.ansible.com/ansible/latest/modules/list_of_all_modules.html
+https://docs.ansible.com/ansible/latest/modules/modules_by_category.html
+
+- Install httpd server  - yum
+- Start a httpd server - service
+- Create a file index.html- file
+- Copy a index.html to /var/www/html/- copy
+
+"Ansible Module for"
+Ansible Module for install package in ubuntu
+
+Basic Workflow working wth Ansible Adhoc Command.
+==================================================
+ansible localhost -m yum -a"name=httpd state=present"
+ansible localhost -m service -a"name=httpd state=started"
+ansible localhost -m file -a"name=index.html state=touch"
+ansible localhost -m copy -a"src=index.html dest=/var/www/html/"
+
+Lab 1 - 
+https://www.devopsschool.com/blog/ansible-adhoc-commands-lab-excercise-part-1/
+
+Publish at 
+https://github.com/devopsschool-lab-exercise/Tesco-Git-Ansible-Batch2-Nov
+
+
+===========================
+Do one task in ONE REMOTE MACHINE
+============================
+ansible localhost -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible localhost -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible localhost -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible localhost -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+
+13.233.18.98
+
+ansible -i 13.233.18.98, -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible -i 13.233.18.98, -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible -i 13.233.18.98, -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible -i 13.233.18.98, -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+
+13.233.18.98,13.233.18.98,
+13.233.18.98
+13.233.18.98,
+
+Remote Inventory has to be in LIST FORMAT
+                ------- COMMAND LINE
+                ------- file
+                ------- directory
+                ------- SCRIPT
+
+What is Group?
+    a Collection of remote hosts.
+
+Kinds of Groups
+        Default - all, nogroup
+        Custom
+
+ansible all -i 13.233.18.98, -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible all -i 13.233.18.98, -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible all -i 13.233.18.98, -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible all -i 13.233.18.98, -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+
+
+How to modify a ansible config file.
+==================================
+
+[ec2-user@ip-172-31-13-208 ~]$ ansible -h
+usage: ansible [-h] [--version] [-v] [-b] [--become-method BECOME_METHOD]
+               [--become-user BECOME_USER] [-K] [-i INVENTORY] [--list-hosts]
+               [-l SUBSET] [-P POLL_INTERVAL] [-B SECONDS] [-o] [-t TREE] [-k]
+               [--private-key PRIVATE_KEY_FILE] [-u REMOTE_USER]
+               [-c CONNECTION] [-T TIMEOUT]
+               [--ssh-common-args SSH_COMMON_ARGS]
+               [--sftp-extra-args SFTP_EXTRA_ARGS]
+               [--scp-extra-args SCP_EXTRA_ARGS]
+               [--ssh-extra-args SSH_EXTRA_ARGS] [-C] [--syntax-check] [-D]
+               [-e EXTRA_VARS] [--vault-id VAULT_IDS]
+               [--ask-vault-pass | --vault-password-file VAULT_PASSWORD_FILES]
+               [-f FORKS] [-M MODULE_PATH] [--playbook-dir BASEDIR]
+               [-a MODULE_ARGS] [-m MODULE_NAME]
+               pattern
+
+Define and run a single task 'playbook' against a set of hosts
+
+positional arguments:
+  pattern               host pattern
+
+optional arguments:
+  --ask-vault-pass      ask for vault password
+  --list-hosts          outputs a list of matching hosts; does not execute
+                        anything else
+  --playbook-dir BASEDIR
+                        Since this tool does not use playbooks, use this as a
+                        substitute playbook directory.This sets the relative
+                        path for many features including roles/ group_vars/
+                        etc.
+  --syntax-check        perform a syntax check on the playbook, but do not
+                        execute it
+  --vault-id VAULT_IDS  the vault identity to use
+  --vault-password-file VAULT_PASSWORD_FILES
+                        vault password file
+  --version             show program's version number, config file location,
+                        configured module search path, module location,
+                        executable location and exit
+  -B SECONDS, --background SECONDS
+                        run asynchronously, failing after X seconds
+                        (default=N/A)
+  -C, --check           don't make any changes; instead, try to predict some
+                        of the changes that may occur
+  -D, --diff            when changing (small) files and templates, show the
+                        differences in those files; works great with --check
+  -M MODULE_PATH, --module-path MODULE_PATH
+                        prepend colon-separated path(s) to module library (def
+                        ault=~/.ansible/plugins/modules:/usr/share/ansible/plu
+                        gins/modules)
+  -P POLL_INTERVAL, --poll POLL_INTERVAL
+                        set the poll interval if using -B (default=15)
+  -a MODULE_ARGS, --args MODULE_ARGS
+                        module arguments
+  -e EXTRA_VARS, --extra-vars EXTRA_VARS
+                        set additional variables as key=value or YAML/JSON, if
+                        filename prepend with @
+  -f FORKS, --forks FORKS
+                        specify number of parallel processes to use
+                        (default=5)
+  -h, --help            show this help message and exit
+  -i INVENTORY, --inventory INVENTORY, --inventory-file INVENTORY
+                        specify inventory host path or comma separated host
+                        list. --inventory-file is deprecated
+  -l SUBSET, --limit SUBSET
+                        further limit selected hosts to an additional pattern
+  -m MODULE_NAME, --module-name MODULE_NAME
+                        module name to execute (default=command)
+  -o, --one-line        condense output
+  -t TREE, --tree TREE  log output to this directory
+  -v, --verbose         verbose mode (-vvv for more, -vvvv to enable
+                        connection debugging)
+
+Privilege Escalation Options:
+  control how and which user you become as on target hosts
+
+  --become-method BECOME_METHOD
+                        privilege escalation method to use (default=sudo), use
+                        `ansible-doc -t become -l` to list valid choices.
+  --become-user BECOME_USER
+                        run operations as this user (default=root)
+  -K, --ask-become-pass
+                        ask for privilege escalation password
+  -b, --become          run operations with become (does not imply password
+                        prompting)
+
+Connection Options:
+  control as whom and how to connect to hosts
+
+  --private-key PRIVATE_KEY_FILE, --key-file PRIVATE_KEY_FILE
+                        use this file to authenticate the connection
+  --scp-extra-args SCP_EXTRA_ARGS
+                        specify extra arguments to pass to scp only (e.g. -l)
+  --sftp-extra-args SFTP_EXTRA_ARGS
+                        specify extra arguments to pass to sftp only (e.g. -f,
+                        -l)
+  --ssh-common-args SSH_COMMON_ARGS
+                        specify common arguments to pass to sftp/scp/ssh (e.g.
+                        ProxyCommand)
+  --ssh-extra-args SSH_EXTRA_ARGS
+                        specify extra arguments to pass to ssh only (e.g. -R)
+  -T TIMEOUT, --timeout TIMEOUT
+                        override the connection timeout in seconds
+                        (default=10)
+  -c CONNECTION, --connection CONNECTION
+                        connection type to use (default=smart)
+  -k, --ask-pass        ask for connection password
+  -u REMOTE_USER, --user REMOTE_USER
+                        connect as this user (default=None)
+
+Some modules do not make sense in Ad-Hoc (include, meta, etc)
+===========================================================================
+
+
+ansible all -i 13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98, -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+
+ansible all -i 13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98,13.233.18.98, -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+
+
+What is Inventory file?
+--- ITS INI
+--- It has list of IP address seprated by new line
+--- It has custom group.
+
+
+ansible all -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible all -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible all -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible all -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+
+ansible all -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b -vvvvvv
+
+---------inventory group-------------------------
+[web]
+13.233.74.211
+
+[db]
+13.233.18.98
+
+[common]
+5.6.7.7
+5.6.7.8
+7.4.3.2
+6.9.4.3
+
+ansible web -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible common -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+
+
+ansible web -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible common -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible common -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible common -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible common -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible common -i inventory -m yum -a"name=httpd state=present" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m service -a"name=httpd state=started" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m file -a"name=index.html state=touch" -u ec2-user --key-file=remote.pem -b
+ansible web -i inventory -m copy -a"src=index.html dest=/var/www/html/" -u ec2-user --key-file=remote.pem -b
+----------------------------- PLAYBOOK------------------------------------------
+~
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd
+  - name: start the httpd service
+    service: name=httpd state=started
+  - name: create a empty fle
+    file: dest=/opt/test.txt state=touch
+  - name: copy a file
+    copy: dest=/var/www/html/ src="/home/ec2-user/index.html"
+...
+
+ansible-playbook -i inventory web.yaml -u ec2-user --key-file=remote.pem -b
+
+Lab 3 - https://www.devopsschool.com/blog/ansible-playbook-lab-excercise-part-2/
+
+https://www.devopsschool.com/blog/ansible-include-scnario-with-list-of-plays-or-tasks/
+
+What to do when you have
+        ---- Separate TASK YAML
+        ----- Seprate PLAY YAML
+        https://www.devopsschool.com/blog/ansible-include-scnario-with-list-of-plays-or-tasks/
+================================================================================================
+13.232.163.155
+15.206.165.15
+
+
+Variables
+templates
+Condiontiong
+Looping
+Handlers
+==================================
+What is Variables?
+      String
+      boolean
+      number
+      list
+      dict
+
+How many places you can declare a variables?
+-----------------------------------------
+      28+
+
+      PLAYBOOK
+            Directly
+            Through External file
+            Prompt
+            Register
+              OUTPUT of TASK is set to variables using REGister
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  vars:
+    myname: "Rajeshkumar"
+    package: "httpd"
+  vars_files:
+    - ext.yaml
+  vars_prompt:
+    - name: "mycompname"
+      prompt: "Which company you work for - Enter it here:-"
+  tasks:
+  - name: Ansible register variable basic example
+    shell: "find *.txt >> var.yaml"
+    args:
+      chdir: "/home/ec2-user"
+    register: find_output
+  - name: Install the httpd apps
+    yum: name={{ package }}
+  - name: start the httpd service
+    service: name={{package}} state=started
+  - name: create a empty fle
+    file: dest=/opt/test.txt state=touch
+  - name: copy a file
+    copy: dest=/var/www/html/ src="/home/ec2-user/index.html"
+  - debug:
+      msg: Myname is {{ myname }}
+  - debug:
+      msg: My filename is {{ find_output }}
+...
+
+
+      INVENTORY
+          Behavioial parameters
+  ===========================================
+
+[web]
+13.232.163.155 ansible_user=ec2-user ansible_ssh_private_key_file=remote.pem ansible_become=true
+15.206.165.15 ansible_user=ec2-user ansible_ssh_private_key_file=remote.pem ansible_become=true
+
+[db]
+13.232.163.155 
+15.206.165.15
+web1
+
+[db:vars]
+ansible_user=ec2-user 
+ansible_ssh_private_key_file=remote.pem 
+ansible_become=true
+
+ansible-playbook -i inventory web5.yaml
+
+ =============inventory file==============================
+[web]
+13.232.163.155 ansible_user=ec2-user ansible_ssh_private_key_file=remote.pem ansible_become=true 
+15.206.165.15 ansible_user=ec2-user ansible_ssh_private_key_file=remote.pem ansible_become=true
+
+[db]
+13.232.163.155 myname=rajeshininvent
+15.206.165.15
+
+[db:vars]
+ansible_user=ec2-user 
+ansible_ssh_private_key_file=remote.pem 
+ansible_become=true
+
+[web:vars]
+myname=rajeshininvent
+
+ansible-playbook -i inventory web5.yaml
+
+ =============group_vars & host_vars==============================
+group_vars - vars for GROUP
+host_vars - Vars for host
+                
+Reference
+https://www.devopsschool.com/tutorial/ansible/variables/
+
+
+Command Line
+
+FACT Variable &&& Condiontiong
+https://www.devopsschool.com/tutorial/ansible/ansible-conditional-programming-playbooks.html
+
+
+Lab 4 --
+======================================
+https://www.devopsschool.com/blog/ansible-variable-lab-excercise-part-1/
+
+
+
+myname: "Rajeshkumar"
+package: "httpd"
+
+
+

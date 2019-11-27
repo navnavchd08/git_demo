@@ -1,0 +1,10 @@
+---
+
+- name: This creates the service
+  hosts: web
+  vars_files:
+  - external_vars.yml
+  tasks:
+  - name: Starts service named httpd
+    yum: name={{ mywebserver }} state=started
+...
