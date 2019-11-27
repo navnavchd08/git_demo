@@ -1,0 +1,14 @@
+---
+- name: This will install httpd
+  hosts: web
+  tasks:
+  - name: Install httpd
+    yum: name={{ package }} state=present
+...
+
+
+[web]
+192.168.56.102
+
+[web:vars]
+package=httpd

@@ -1,0 +1,7 @@
+[web]
+192.168.56.101
+[web:vars]
+mywebserver=httpd
+
+[db]
+192.168.56.101

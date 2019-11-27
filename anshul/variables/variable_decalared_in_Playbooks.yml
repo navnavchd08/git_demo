@@ -1,0 +1,10 @@
+---
+
+- name: This starts the service
+  hosts: web
+  vars:
+    mywebserver: httpd
+  tasks:
+  - name: Starts service named httpd
+    yum: name={{ mywebserver }} state=started
+...
