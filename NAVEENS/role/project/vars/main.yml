@@ -1,0 +1,5 @@
+---
+# vars file for project
+package=httpd
+group_name=deloitte
+user_name=deploy

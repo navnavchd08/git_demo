@@ -1,0 +1,35 @@
+---
+# tasks file for project
+   - name: Install the httpd apps
+     yum: name={{package}}
+     when:
+          - ansible_distribution == "RedHat"
+   - name: copy file
+     template:
+      src: index.html.j2
+      dest: /var/www/html/index.html
+   - name: copy a file
+     template:
+      src: httpd.conf.j2
+      dest: /etc/httpd/conf/httpd.conf
+     notify:
+     - restart apache
+   - name: start the httpd service
+     service: name=httpd state=started
+   - name: Ansible register for date
+     shell: "date"
+     register: date_output
+   - name:create user and group
+     group: name={{group_name}} state=present
+     user: name={{user_name}} shell=/bin/bash groups={{group_name}} state=present
+   - name:Install a git, ntp and vim tools using ansible looping/iterators
+     yum: name={{item}} state=present
+     loop:
+        - git
+        - ntp
+        - vim-nox 
+   - name:download galaxy module
+     shell: "ansible-galaxy install geerlingguy.mysql"
+     when:
+          - ansible_distribution == "RedHat"
+
