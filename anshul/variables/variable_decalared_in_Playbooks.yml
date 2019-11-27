@@ -1,0 +1,8 @@
+---
+
+- name: This starts the service
+  hosts: web
+  tasks:
+  - name: Starts service named httpd
+    service: name={{ mywebserver }} state=started
+...
