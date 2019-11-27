@@ -609,3 +609,57 @@ https://www.devopsschool.com/tutorial/ansible//ansible-linux-playbooks.html
 
 
 Open Lab - 
+=======================================
+What is Role?
+  IS defined directory structure for 
+        tasks
+        vars
+        templates
+        files
+        handlers
+        etc
+    
+
+Type of role?
+    Custom 
+    Communiity - https://galaxy.ansible.com/
+
+[ec2-user@ip-172-31-12-23 final]$ ansible-galaxy init web
+- Role web was created successfully
+[ec2-user@ip-172-31-12-23 final]$ clear
+[ec2-user@ip-172-31-12-23 final]$ tree
+.
+├── roles
+└── web
+    ├── defaults
+    │   └── main.yml
+    ├── files
+    ├── handlers
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── README.md
+    ├── tasks
+    │   └── main.yml
+    ├── templates
+    ├── tests
+    │   ├── inventory
+    │   └── test.yml
+    └── vars
+        └── main.yml
+
+10 directories, 8 files
+[ec2-user@ip-172-31-12-23 final]$
+
+
+SITE -
+=============
+---
+- hosts: web
+  become: yes
+  gather_facts: yes
+  roles:
+    - role: web
+
+
+Last Project - https://www.devopsschool.com/blog/ansible-role-project-1/
