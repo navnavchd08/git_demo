@@ -116,3 +116,4 @@ temp.yaml
     # is changed, and only then
     - name: restart apache
       service: name=httpd state=restarted
+      
