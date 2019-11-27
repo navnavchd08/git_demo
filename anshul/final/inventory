@@ -1,0 +1,15 @@
+[web]
+13.232.163.155 ansible_user=ec2-user ansible_ssh_private_key_file=remote.pem ansible_become=true 
+15.206.165.15 ansible_user=ec2-user ansible_ssh_private_key_file=remote.pem ansible_become=true
+
+[db]
+13.232.163.155 myname=rajeshininvent
+15.206.165.15
+
+[db:vars]
+ansible_user=ec2-user 
+ansible_ssh_private_key_file=remote.pem 
+ansible_become=true
+
+[web:vars]
+myname1=rajeshininvent
