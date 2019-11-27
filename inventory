@@ -1,0 +1,5 @@
+[list1]
+tpc001534
+
+[list1:vars]
+package="httpd" 
