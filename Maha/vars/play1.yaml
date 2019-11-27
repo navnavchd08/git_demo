@@ -3,6 +3,7 @@
    hosts: test
    vars:
      package: "httpd"
+     port_number: "80"
    vars_files:
      - ext.yaml
      - host_vars/tpc0.t006.tpc.tgrc.tesco.org
@@ -12,6 +13,12 @@
        yum:
          name: "{{ packagename }}"
          state: present
+     - name: copy the httpd.conf files
+       template:
+         src: httpd.conf.j2
+         dest: /etc/httpd/conf/httpd.conf
+       notify:
+         - restart httpd
      - debug:
          msg: please show me the value of packagename {{ packagename }}
      - debug:
@@ -20,3 +27,8 @@
          msg: please show me the value of testpackage {{ testpackage }}
      - debug:
          msg: please show me the value of extrapacakge {{ extrapackage }}
+   handlers:
+     - name: restart httpd
+       service:
+         name: httpd
+         state: restarted

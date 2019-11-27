@@ -1,0 +1,44 @@
+---
+# tasks file for http
+- name: Install httpd package from the vars
+  yum:
+    name: "{{ packagename }}"
+    state: present
+  when: ansible_os_family == "RedHat"
+
+- name:
+  shell:
+    cmd: ls -l
+  register: shelloutput
+
+- name: copy index.html.j2 file into the server
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index.html
+
+- name: copy the http.conf file to the server
+  template:
+    src: httpd.conf.j2
+    dest: /etc/httpd/conf/http.conf
+  notify: restart http
+
+- name: create a new group
+  group:
+    name: tesco
+
+- name: create a new user
+  user:
+    name: deploylatest
+    groups: tesco
+    append: yes
+- debug:
+    msg: print the value for {{ varprompted }}
+
+- name: Install multiple pacakges
+  yum:
+    name: "{{ item }}"
+    state: present
+  with_items:
+    - git
+    - ntp
+    - vim

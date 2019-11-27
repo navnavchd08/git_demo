@@ -1,0 +1,11 @@
+---
+  - name: call the tasks through the playbook
+    hosts: test
+    vars_prompt:
+      - name: varprompted
+        prompt: please enter a value
+    become: yes
+    gather_facts: yes
+    roles:
+      - role: http
+      - role: geerlingguy.pip
