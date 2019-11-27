@@ -1,0 +1,26 @@
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  vars:
+    myname: "Rajeshkumar"
+    package: "httpd"
+  vars_files:
+    - ext.yaml
+  vars_prompt:
+    - name: "myname"
+      prompt: "Which company you work for - Enter it here:-"
+      private: no
+  tasks:
+  - name: Install the httpd apps
+    yum: name={{ package }}
+  - name: start the httpd service
+    service: name={{package}} state=started
+  - name: create a empty fle
+    file: dest=/opt/test.txt state=touch
+  - name: copy a file
+    copy: dest=/var/www/html/ src="/home/ec2-user/index.html"
+  - debug:
+      msg: Myname is {{ myname }}
+  - debug:
+      msg: My Comp name is {{ mycompname }}
+...

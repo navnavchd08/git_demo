@@ -1,0 +1,24 @@
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  vars:
+    myname: "Rajeshkumar1rr"
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd
+  - name: Template a file to /etc/files.conf
+    template:
+      src: index.html.j2
+      dest: /var/www/html/index2.html
+    notify:
+    - restart apache
+  - name: start the httpd service
+    service: name=httpd state=started
+  - name: copy a file
+    copy: dest=/var/www/html/ src="/home/ec2-user/index.html"
+
+  handlers:
+    # this particular handler is run when some_random_foo.conf
+    # is changed, and only then
+    - name: restart apache
+      service: name=httpd state=restarted
