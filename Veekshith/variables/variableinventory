@@ -3,6 +3,6 @@
   hosts: web
   tasks:
   - name: Install package named httpd
-    yum: name={{ mywebserver }} state=present
+    yum: name={{ package }} state=present
 
 ...
