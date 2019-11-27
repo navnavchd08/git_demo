@@ -2,7 +2,9 @@
 
 - name: This starts the service
   hosts: web
+  vars:
+    mywebserver: httpd
   tasks:
   - name: Starts service named httpd
-    service: name={{ mywebserver }} state=started
+    yum: name={{ mywebserver }} state=started
 ...
