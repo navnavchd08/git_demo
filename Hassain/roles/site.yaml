@@ -1,0 +1,9 @@
+---
+- hosts: workr
+  become: yes
+  gather_facts: yes
+  vars_prompt:
+   - name: "port"
+     prompt: "Which port to:-"
+  roles:
+    - role: web

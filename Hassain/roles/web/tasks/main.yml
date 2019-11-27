@@ -1,0 +1,21 @@
+---
+# tasks file for web
+#
+
+  - name: Install the httpd apps
+    yum: name= {{webserver}}
+    when: ansible_os_family == "Redhat"
+  - name: Template a file to /etc/files.conf
+    template:
+      src:  httpd.conf.j2
+      dest: /etc/httpd/conf/httpd.conf
+    notify:
+    - restart apache
+  - name: which httpd
+    shell: which httpd 
+    args:
+    register: find_output
+  - name: Template a file to /etc/files.conf
+    template:
+      src: index.html.j2
+      dest: /var/www/html/index2.html

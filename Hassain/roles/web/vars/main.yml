@@ -1,0 +1,5 @@
+---
+# vars file for web#
+
+webserver: "httpd"
+OS: "RedHat"
