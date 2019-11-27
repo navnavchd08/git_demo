@@ -1,0 +1,8 @@
+---	
+	- name: This creates the service
+	hosts: web
+	vars_files:
+	- extvar.yml
+	tasks:
+	- name: Starts service named httpd
+	yum: name= {{ package }} state=started
