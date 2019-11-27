@@ -1,5 +1,5 @@
 ---
-# tasks file for myrole
+# tasks file for myrole.
 
   - name: Install the httpd apps if the os family is RedHat
     yum: name={{ webserver }}
