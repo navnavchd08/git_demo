@@ -551,5 +551,115 @@ https://www.devopsschool.com/blog/ansible-variable-lab-excercise-part-1/
 myname: "Rajeshkumar"
 package: "httpd"
 
+=======================================
 
 
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  vars:
+    myname: "Rajeshkumar"
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd
+  - name: start the httpd service
+    service: name=httpd state=started
+  - name: copy a file
+    copy: dest=/var/www/html/ src="/home/ec2-user/index.html"
+
+How to interpolate varaibles?
+Cond 1 - Using jiza 2.
+Cond 2- File name must be with .j2
+Cond 3 - Module name must be template.
+
+- name: Template a file to /etc/files.conf
+  template:
+    src: index.html.j2
+    dest: /var/www/html/index2.html
+https://www.devopsschool.com/tutorial/ansible//ansible-linux-playbooks.html
+
+
+
+---
+- name: This sets up an httpd webserver
+  hosts: web
+  vars:
+    myname: "Rajeshkumar1"
+  tasks:
+  - name: Install the httpd apps
+    yum: name=httpd
+  - name: Template a file to /etc/files.conf
+    template:
+      src: index.html.j2
+      dest: /var/www/html/index2.html
+    notify:
+    - restart apache
+  - name: start the httpd service
+    service: name=httpd state=started
+  - name: copy a file
+    copy: dest=/var/www/html/ src="/home/ec2-user/index.html"
+
+  handlers:
+    # this particular handler is run when some_random_foo.conf
+    # is changed, and only then
+    - name: restart apache
+      service: name=httpd state=restarted
+
+
+
+Open Lab - 
+=======================================
+What is Role?
+  IS defined directory structure for 
+        tasks
+        vars
+        templates
+        files
+        handlers
+        etc
+    
+
+Type of role?
+    Custom 
+    Communiity - https://galaxy.ansible.com/
+
+[ec2-user@ip-172-31-12-23 final]$ ansible-galaxy init web
+- Role web was created successfully
+[ec2-user@ip-172-31-12-23 final]$ clear
+[ec2-user@ip-172-31-12-23 final]$ tree
+.
+├── roles
+└── web
+    ├── defaults
+    │   └── main.yml
+    ├── files
+    ├── handlers
+    │   └── main.yml
+    ├── meta
+    │   └── main.yml
+    ├── README.md
+    ├── tasks
+    │   └── main.yml
+    ├── templates
+    ├── tests
+    │   ├── inventory
+    │   └── test.yml
+    └── vars
+        └── main.yml
+
+10 directories, 8 files
+[ec2-user@ip-172-31-12-23 final]$
+
+
+SITE -
+=============
+---
+- hosts: web
+  become: yes
+  gather_facts: yes
+  roles:
+    - role: web
+
+
+Last Project - https://www.devopsschool.com/blog/ansible-role-project-1/

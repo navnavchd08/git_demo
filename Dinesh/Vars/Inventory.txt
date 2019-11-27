@@ -1,0 +1,8 @@
+---
+- name: This installs package
+  hosts: web
+  tasks:
+  - name: Install package named httpd
+    yum: name={{ mywebserver }} state=present
+
+...

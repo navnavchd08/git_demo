@@ -1,0 +1,6 @@
+---
+# handlers file for web
+    # this particular handler is run when some_random_foo.conf
+    # is changed, and only then
+    - name: restart apache
+      service: name=httpd state=restarted

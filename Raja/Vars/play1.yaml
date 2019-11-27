@@ -1,0 +1,22 @@
+---
+ - name: create a group
+   hosts: test
+   vars:
+     package: "httpd"
+   vars_files:
+     - ext.yaml
+     - host_vars/tpc0.t006.tpc.tgrc.tesco.org
+     - group_vars/test
+   tasks:
+     - name: Install the {{ packagename }}
+       yum:
+         name: "{{ packagename }}"
+         state: present
+     - debug:
+         msg: please show me the value of packagename {{ packagename }}
+     - debug:
+         msg: please show me the value of newpackagename {{ newpackagename }}
+     - debug:
+         msg: please show me the value of testpackage {{ testpackage }}
+     - debug:
+         msg: please show me the value of extrapacakge {{ extrapackage }}
