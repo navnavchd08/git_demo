@@ -1,0 +1,9 @@
+---	
+	- name: httpd service
+	hosts: web
+	vars:
+	package: httpd
+	tasks:
+	- name: Starts service named httpd
+	yum: name= {{ package }} state=started
+	...
