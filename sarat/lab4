@@ -28,3 +28,63 @@ mywebserver=httpd
   - name: Starts service named httpd
     yum: name={{ mywebserver }} state=started
 ...
+
+
+3. Playbook reading var ffrom external file:
+
+---
+- name: This installs package
+  hosts: web
+  vars_files:
+    - /vars/external_vars.yml
+  tasks:
+  - name: Install package named httpd
+    yum: name={{ mywebserver }} state=present
+...
+
+External file:
+
+mywebserver:httpd
+
+
+4. Playbook reading var from host_vars:
+
+---
+- name: This starts the service
+  hosts: web
+  tasks:
+  - name: Starts service named httpd
+    yum: name={{ mywebserver }} state=started
+...
+
+├── host_vars
+│   └── 92.168.100.32
+mywebserver:httpd
+
+5. Playbook reading var from group_vars:
+
+---
+- name: This starts the service
+  hosts: web
+  tasks:
+  - name: Starts service named httpd
+    yum: name={{ mywebserver }} state=started
+...
+
+├── group_vars
+│   └── web
+mywebserver:httpd
+
+6. Playbook reading var from command prompt:
+
+---
+- name: This installs package
+  hosts: web
+  tasks:
+    - debug: var=mywebserver
+      yum: name={{ mywebserver }} state=present
+...
+
+Command:
+ansible-playbook -i localhost pb6.yaml --extra-vars='{"mywebserver": httpd}'
+
