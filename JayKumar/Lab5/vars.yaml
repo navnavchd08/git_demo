@@ -1,5 +1,5 @@
 ---
-# vars file for myrole
+# vars file for myrole.
 
 webserver: httpd
 otherservices: git, ntp, vim, tree
